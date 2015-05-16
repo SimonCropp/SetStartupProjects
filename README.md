@@ -6,7 +6,7 @@ https://nuget.org/packages/SetStartupProjects/
 
 ## Justification
 
-At Particular, as part of our [documentation site](http://docs.particular.net/) we **manipulate Visual Studio .suo files** to allow us to control the start-up projects of our [downloadable samples](http://docs.particular.net/samples/). 
+At [Particular](http://particular.net/), as part of our [documentation site](http://docs.particular.net/) we **manipulate Visual Studio .suo files** to allow us to control the start-up projects of our [downloadable samples](http://docs.particular.net/samples/). 
 
 Many of our samples have multiple "startable" components, eg services and websites that interact. To run correctly all these components have to run when the solution is "started". The default behavior of Visual Studio is to "set the first project in the solution as the start project". This is problematic since it results in several friction points:
 
