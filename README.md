@@ -24,7 +24,7 @@ The start-up projects for a solution are stored in the [Solution User Options (.
 
 ## Surely this is a solved problem 
 
-While Visual Studio was released in 1995 and with it the concept of an `.suo` configuration file. Generally when a technology has been around for 20 years most of the problems are solved. If not there are enough nuggets of information around to piece together a solution. This does not seem to be the case for setting start project using code. There are several other approaches which do not match our requirements: 
+Visual Studio was released in 1995 and with it the concept of an `.suo` configuration file. Generally when a technology has been around for 20 years most of the problems are solved. If not there are enough nuggets of information around to piece together a solution. This does not seem to be the case for setting start project using code. There are several other approaches which do not match our requirements: 
 
 * **Manipulate the order of projects in a solution**: The [Sln Startup Project](https://github.com/michaKFromParis/slnStartupProject) can change the start-up projects by leveraging the side effect of Visual Studio starting the first project. It works by reordering the projects in the `.sln` file. However this approach only works for a single start-up project.
 * **Switch from within Visual Studio**: The [switchstartupproject](https://bitbucket.org/thirteen/switchstartupproject/wiki/Home) is a Visual Studio extension that supports multiple combinations of startup projects. Very useful but not an option since the context of this problem is not inside Visual Studio.
