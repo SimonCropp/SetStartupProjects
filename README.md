@@ -1,3 +1,4 @@
+<img src="https://raw.github.com/ParticularLabs/SetStartupProjects/master/Icons/package_icon.png" width="200px">
 
 ## The nuget package [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg?style=flat)](https://www.nuget.org/packages/SetStartupProjects/)
 
