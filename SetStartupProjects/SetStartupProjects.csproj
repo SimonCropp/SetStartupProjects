@@ -75,9 +75,7 @@
     <Delete Files="@(FilesToDelete)" />
     <MakeDir Directories="$(NugetDir)" />
     <Copy SourceFiles="$(ProjectDir)NugetAssets\SetStartupProjects.nuspec" DestinationFolder="$(NugetDir)" />
-    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(NugetDir)Lib\NET40\$(TargetFileName)&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)OpenMcdf.dll&quot; /target:library /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
-    <!--    <Copy SourceFiles="$(OutputPath)SetStartupProjects.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
-    <Copy SourceFiles="$(OutputPath)SetStartupProjects.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />-->
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(NugetDir)Lib\NET40\$(TargetFileName)&quot; /internalize  &quot;$(TargetPath)&quot; &quot;$(TargetDir)OpenMcdf.dll&quot; /target:library /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
     <Copy SourceFiles="$(OutputPath)SetStartupProjects.xml" DestinationFolder="$(NugetDir)Lib\NET40" />
     <PepitaPackage.CreatePackageTask NuGetBuildDirectory="$(NugetDir)" MetadataAssembly="$(OutputPath)SetStartupProjects.dll" />
   </Target>
