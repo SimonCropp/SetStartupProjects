@@ -12,6 +12,6 @@
     <iconUrl>https://raw.github.com/ParticularLabs/SetStartupProjects/master/Icons/package_icon.png</iconUrl>
     <description>Hacks a Visual Studio .suo file to set multiple startup projects.</description>
     <language>en-AU</language>
-    <tags>SUO, Visal Studio, Startup</tags>
+    <tags>SUO, Visual Studio, Startup</tags>
   </metadata>
 </package>
