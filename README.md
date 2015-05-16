@@ -194,6 +194,8 @@ Determining the startup projects for a solution can be derived using a combinati
     var suoHacker = new SuoHacker();
     suoHacker.CreateStartProjectSuoFiles(solutionPath, startupProjectGuids);
 
+You can, of course, write your own logic for determining startup project GUIDs and pass them to `SuoHacker.CreateStartProjectSuoFiles`. 
+
 ## Multiple versions of Visual Studio
   
 `SuoHacker` writes `.suo` files for both Visual Studio 2012 and 2013 revealed. Visual Studio 2015 is covered since it successfully upgrades the Visual Studio 2013 `.suo`.
