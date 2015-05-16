@@ -66,14 +66,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <NugetDir>$(SolutionDir)NuGetBuild\</NugetDir>
+    <NugetDir>$(SolutionDir)..\NuGetBuild\</NugetDir>
   </PropertyGroup>
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
     <ItemGroup>
       <FilesToDelete Include="$(NugetDir)**\*.*" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-    <MakeDir Directories="$(NugetDir)" />
+    <MakeDir Directories="$(NugetDir)Lib\NET40\" />
     <Copy SourceFiles="$(ProjectDir)NugetAssets\SetStartupProjects.nuspec" DestinationFolder="$(NugetDir)" />
     <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(NugetDir)Lib\NET40\$(TargetFileName)&quot; /internalize  &quot;$(TargetPath)&quot; &quot;$(TargetDir)OpenMcdf.dll&quot; /target:library /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
     <Copy SourceFiles="$(OutputPath)SetStartupProjects.xml" DestinationFolder="$(NugetDir)Lib\NET40" />

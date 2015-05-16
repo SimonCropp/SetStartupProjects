@@ -57,7 +57,7 @@ Set the start-up projects to be `ConsoleApplication1` and `ConsoleApplication2`.
 
 Opening the `.suo` for this solution in Structured Storage Explorer and navigating to the `SolutionConfiguration` Stream will show
 
-![](./structuredstorageexplorer.png)
+![](Images/structuredstorageexplorer.png)
 
 You will note the text contains the project GUIDs mentioned above. 
 
@@ -98,7 +98,7 @@ Note that Visual Studio has trouble rendering the characters. If you instead sav
 
 Opening `temp.txt` in [Sublime Text](http://www.sublimetext.com/) will reveal this (new lines added after `;` characters for clarity)
 
-![](textoutput.png)
+![](Images/textoutput.png)
 
 Note the existence of [control characters](http://en.wikipedia.org/wiki/Control_character#In_ASCII) explains why both the MCDF explorer and Visual Studio had trouble rendering them.
 
@@ -108,11 +108,11 @@ There are several other settings stored in the configuration stream. The importa
 
 ### The key indicating the start of the multiple startup section:
 
-![](enablemultistart.png)
+![](Images/enablemultistart.png)
 
 ### Defining each project that should be part of the multiple start:
 
-![](startprojectformat.png)
+![](Images/startprojectformat.png)
 
 ### Redundant information
 
@@ -122,7 +122,7 @@ The rest are configuration options and [miscellaneous project files](https://msd
 
 For the sample solutions project GUIDs the minimum that needs to be written back to that stream is:
 
-![](desiredoutput.png)
+![](Images/desiredoutput.png)
 
 ## The suo templated used
 
@@ -184,7 +184,7 @@ Using the SetStartupProjects nuget the startup projects for the Sample Solution 
 
 Opening the Sample Solution you will note the startup projects have been changed.
 
-![](itworked.png)
+![](Images/itworked.png)
 
 ## How to determining start projects
 
