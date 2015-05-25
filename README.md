@@ -184,7 +184,7 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 ![](Images/itworked.png)
 
-## How to determining start projects
+## How to determine start projects
 
 Determining the startup projects for a solution can be derived using a combination the the `.csproj` content, some xml querying, and a [lookup list of projects that can be considered startable](http://www.mztools.com/articles/2008/mz2008017.aspx). This is encapsulating in the `StartProjectFinder` class.
 
