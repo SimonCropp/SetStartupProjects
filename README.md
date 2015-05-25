@@ -198,7 +198,7 @@ You can, of course, write your own logic for determining startup project GUIDs a
 
 ## Multiple versions of Visual Studio
   
-`SuoHacker` writes `.suo` files for both Visual Studio 2012 and 2013 revealed. Visual Studio 2015 is covered since it successfully upgrades the Visual Studio 2013 `.suo`.
+`SuoHacker` writes `.suo` files for Visual Studio 2012, 2013 and 2015. 
 
 ## Icon 
 

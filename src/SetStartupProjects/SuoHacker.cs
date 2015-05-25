@@ -28,19 +28,30 @@ namespace SetStartupProjects
             DeleteExistingSuo(solutionDirectory);
 
             var solutionPath = Directory.EnumerateFiles(solutionDirectory, "*.sln").Single();
+            if ((visualStudioVersions & VisualStudioVersions.Vs2015) == VisualStudioVersions.Vs2015)
+            {
+                var solutionName = Path.GetFileNameWithoutExtension(solutionPath);
+                var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v14");
+                Directory.CreateDirectory(suoDirectoryPath);
+                var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
+                using (var stream = Resource.AsStream("Solution2015.suotemplate"))
+                {
+                    WriteToStream(suoFilePath, startupProjectGuids, stream);
+                }
+            }
             if ((visualStudioVersions & VisualStudioVersions.Vs2013) == VisualStudioVersions.Vs2013)
             {
+                var suoFilePath = Path.ChangeExtension(solutionPath, ".v12.suo");
                 using (var stream = Resource.AsStream("Solution2013.suotemplate"))
                 {
-                    var suoFilePath = Path.ChangeExtension(solutionPath, ".v12.suo");
                     WriteToStream(suoFilePath, startupProjectGuids, stream);
                 }
             }
             if ((visualStudioVersions & VisualStudioVersions.Vs2012) == VisualStudioVersions.Vs2012)
             {
+                var suoFilePath = Path.ChangeExtension(solutionPath, ".v11.suo");
                 using (var stream = Resource.AsStream("Solution2012.suotemplate"))
                 {
-                    var suoFilePath = Path.ChangeExtension(solutionPath, ".v11.suo");
                     WriteToStream(suoFilePath, startupProjectGuids, stream);
                 }
             }
@@ -105,7 +116,7 @@ namespace SetStartupProjects
 
         static void DeleteExistingSuo(string solutionDirectory)
         {
-            foreach (var suoFile in Directory.EnumerateFiles(solutionDirectory, "*.suo"))
+            foreach (var suoFile in Directory.EnumerateFiles(solutionDirectory, "*.suo", SearchOption.AllDirectories))
             {
                 File.Delete(suoFile);
             }

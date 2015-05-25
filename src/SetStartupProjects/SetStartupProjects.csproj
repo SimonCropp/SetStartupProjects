@@ -62,6 +62,7 @@
     <None Include="packages.config" />
     <EmbeddedResource Include="Solution2012.suotemplate" />
     <EmbeddedResource Include="Solution2013.suotemplate" />
+    <EmbeddedResource Include="Solution2015.suotemplate" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
