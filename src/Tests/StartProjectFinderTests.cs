@@ -16,9 +16,9 @@ public class StartProjectFinderTests
         }
     }
     [Test]
-    public void Nsb_Host()
+    public void StartActionIsProgram()
     {
-        using (var reader = Resource.AsStreamReader("NsbHost.txt"))
+        using (var reader = Resource.AsStreamReader("StartActionIsProgram.txt"))
         {
             string guid;
             Assert.IsTrue(new StartProjectFinder().ShouldInclude(reader, out guid));

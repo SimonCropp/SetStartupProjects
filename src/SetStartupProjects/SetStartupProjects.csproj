@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Guard.cs" />
     <Compile Include="StartProjectFinder.cs" />
     <Compile Include="SuoHacker.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="VisualStudioVersions.cs" />
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

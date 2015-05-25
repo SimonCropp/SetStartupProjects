@@ -8,24 +8,41 @@ using Resourcer;
 
 namespace SetStartupProjects
 {
-
+    /// <summary>
+    /// Creates suo files that contain startup projects.
+    /// </summary>
     public class SuoHacker
     {
-        public void CreateStartProjectSuoFiles(string solutionDirectory, List<string> startupProjectGuids)
+        /// <summary>
+        /// Create suo files that contain startup projects.
+        /// </summary>
+        /// <remarks>
+        /// All existing suo files will be deleted.
+        /// </remarks>
+        public void CreateStartProjectSuoFiles(string solutionDirectory, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
         {
+            Guard.AgainstNullAndEmpty(solutionDirectory, "solutionDirectory");
+            Guard.AgainstNonExistingDirectory(solutionDirectory, "solutionDirectory");
+            Guard.AgainstNullAndEmpty(startupProjectGuids, "startupProjectGuids");
+
             DeleteExistingSuo(solutionDirectory);
 
-            var solutonPath = Directory.EnumerateFiles(solutionDirectory, "*.sln").Single();
-
-            using (var stream = Resource.AsStream("Solution2013.suotemplate"))
+            var solutionPath = Directory.EnumerateFiles(solutionDirectory, "*.sln").Single();
+            if ((visualStudioVersions & VisualStudioVersions.Vs2013) == VisualStudioVersions.Vs2013)
             {
-                var suoFilePath = Path.ChangeExtension(solutonPath, ".v12.suo");
-                WriteToStream(suoFilePath, startupProjectGuids, stream);
+                using (var stream = Resource.AsStream("Solution2013.suotemplate"))
+                {
+                    var suoFilePath = Path.ChangeExtension(solutionPath, ".v12.suo");
+                    WriteToStream(suoFilePath, startupProjectGuids, stream);
+                }
             }
-            using (var stream = Resource.AsStream("Solution2012.suotemplate"))
+            if ((visualStudioVersions & VisualStudioVersions.Vs2012) == VisualStudioVersions.Vs2012)
             {
-                var suoFilePath = Path.ChangeExtension(solutonPath, ".v11.suo");
-                WriteToStream(suoFilePath, startupProjectGuids, stream);
+                using (var stream = Resource.AsStream("Solution2012.suotemplate"))
+                {
+                    var suoFilePath = Path.ChangeExtension(solutionPath, ".v11.suo");
+                    WriteToStream(suoFilePath, startupProjectGuids, stream);
+                }
             }
         }
 
@@ -54,31 +71,31 @@ namespace SetStartupProjects
         {
             var single = Encoding.GetEncodings().Single(x => x.Name == "utf-16");
             var encoding = single.GetEncoding();
-            var NUL = '\u0000';
-            var DC1 = '\u0011';
-            var ETX = '\u0003';
-            var SOH = '\u0001';
+            var nul = '\u0000';
+            var dc1 = '\u0011';
+            var etx = '\u0003';
+            var soh = '\u0001';
 
             var builder = new StringBuilder();
-            builder.Append(DC1);
-            builder.Append(NUL);
+            builder.Append(dc1);
+            builder.Append(nul);
             builder.Append("MultiStartupProj");
-            builder.Append(NUL);
+            builder.Append(nul);
             builder.Append('=');
-            builder.Append(ETX);
-            builder.Append(SOH);
-            builder.Append(NUL);
+            builder.Append(etx);
+            builder.Append(soh);
+            builder.Append(nul);
             builder.Append(';');
             foreach (var startupProjectGuid in startupProjectGuids)
             {
                 builder.Append('4');
-                builder.Append(NUL);
+                builder.Append(nul);
                 builder.AppendFormat("{{{0}}}.dwStartupOpt", startupProjectGuid);
-                builder.Append(NUL);
+                builder.Append(nul);
                 builder.Append('=');
-                builder.Append(ETX);
-                builder.Append(DC1);
-                builder.Append(NUL);
+                builder.Append(etx);
+                builder.Append(dc1);
+                builder.Append(nul);
                 builder.Append(';');
             }
 

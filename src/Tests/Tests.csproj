@@ -68,7 +68,7 @@
     <EmbeddedResource Include="Lower_Include.txt" />
     <EmbeddedResource Include="Multiple_Exclude.txt" />
     <EmbeddedResource Include="Multiple_Include.txt" />
-    <EmbeddedResource Include="NsbHost.txt" />
+    <EmbeddedResource Include="StartActionIsProgram.txt" />
     <EmbeddedResource Include="OutputType_Exe.txt" />
     <EmbeddedResource Include="OutputType_Lib.txt" />
   </ItemGroup>

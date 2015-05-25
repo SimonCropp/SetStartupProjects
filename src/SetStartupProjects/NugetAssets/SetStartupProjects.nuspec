@@ -8,7 +8,7 @@
     <owners>NServiceBus Ltd</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://github.com/ParticularLabs/SetStartupProjects</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://raw.github.com/ParticularLabs/SetStartupProjects/master/Icons/package_icon.png</iconUrl>
     <description>Hacks a Visual Studio .suo file to set multiple startup projects.</description>
     <language>en-AU</language>
