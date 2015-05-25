@@ -175,8 +175,8 @@ Using the SetStartupProjects nuget the startup projects for the Sample Solution 
         "11111111-1111-1111-1111-111111111111",
         "22222222-2222-2222-2222-222222222222"
     };
-    var suoHacker = new SuoHacker();
-    suoHacker.CreateStartProjectSuoFiles(testSolutionPath, startupProjectGuids);
+    var startProjectSuoCreator = new StartProjectSuoCreator();
+    startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
 
 ## Verifying the results
 
@@ -191,14 +191,14 @@ Determining the startup projects for a solution can be derived using a combinati
     var startupProjectGuids = new StartProjectFinder()
         .GetStartProjects(solutionDirectory)
         .ToList();
-    var suoHacker = new SuoHacker();
-    suoHacker.CreateStartProjectSuoFiles(solutionPath, startupProjectGuids);
+    var startProjectSuoCreator = new StartProjectSuoCreator();
+    startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
 
-You can, of course, write your own logic for determining startup project GUIDs and pass them to `SuoHacker.CreateStartProjectSuoFiles`. 
+You can, of course, write your own logic for determining startup project GUIDs and pass them to `StartProjectSuoCreator`. 
 
 ## Multiple versions of Visual Studio
   
-`SuoHacker` writes `.suo` files for Visual Studio 2012, 2013 and 2015. 
+`StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013 and 2015. 
 
 ## Icon 
 

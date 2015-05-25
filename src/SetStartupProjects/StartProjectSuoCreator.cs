@@ -11,29 +11,45 @@ namespace SetStartupProjects
     /// <summary>
     /// Creates suo files that contain startup projects.
     /// </summary>
-    public class SuoHacker
+    public class StartProjectSuoCreator
     {
         /// <summary>
-        /// Create suo files that contain startup projects.
+        /// Create suo startup files for all solutions in a given directory.
         /// </summary>
         /// <remarks>
-        /// All existing suo files will be deleted.
+        /// All existing suo files will be overwritten.
         /// </remarks>
-        public void CreateStartProjectSuoFiles(string solutionDirectory, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
+        public void CreateForSolutionDirectory(string solutionDirectory, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
         {
             Guard.AgainstNullAndEmpty(solutionDirectory, "solutionDirectory");
             Guard.AgainstNonExistingDirectory(solutionDirectory, "solutionDirectory");
             Guard.AgainstNullAndEmpty(startupProjectGuids, "startupProjectGuids");
 
-            DeleteExistingSuo(solutionDirectory);
+            foreach (var solutionFilePath in Directory.EnumerateFiles(solutionDirectory, "*.sln"))
+            {
+                CreateForSolutionFiles(solutionFilePath, startupProjectGuids, visualStudioVersions);   
+            }
+        }
 
-            var solutionPath = Directory.EnumerateFiles(solutionDirectory, "*.sln").Single();
+        /// <summary>
+        /// Create suo startup files for a specific solution file.
+        /// </summary>
+        /// <remarks>
+        /// All existing suo files will be overwritten.
+        /// </remarks>
+        public void CreateForSolutionFiles(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
+        {
+            Guard.AgainstNullAndEmpty(solutionFilePath, "solutionFilePath");
+            Guard.AgainstNonExistingFile(solutionFilePath, "solutionFilePath");
+            Guard.AgainstNullAndEmpty(startupProjectGuids, "startupProjectGuids");
+            var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
             if ((visualStudioVersions & VisualStudioVersions.Vs2015) == VisualStudioVersions.Vs2015)
             {
-                var solutionName = Path.GetFileNameWithoutExtension(solutionPath);
+                var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v14");
                 Directory.CreateDirectory(suoDirectoryPath);
                 var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
+                File.Delete(suoFilePath);
                 using (var stream = Resource.AsStream("Solution2015.suotemplate"))
                 {
                     WriteToStream(suoFilePath, startupProjectGuids, stream);
@@ -41,7 +57,8 @@ namespace SetStartupProjects
             }
             if ((visualStudioVersions & VisualStudioVersions.Vs2013) == VisualStudioVersions.Vs2013)
             {
-                var suoFilePath = Path.ChangeExtension(solutionPath, ".v12.suo");
+                var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v12.suo");
+                File.Delete(suoFilePath);
                 using (var stream = Resource.AsStream("Solution2013.suotemplate"))
                 {
                     WriteToStream(suoFilePath, startupProjectGuids, stream);
@@ -49,7 +66,8 @@ namespace SetStartupProjects
             }
             if ((visualStudioVersions & VisualStudioVersions.Vs2012) == VisualStudioVersions.Vs2012)
             {
-                var suoFilePath = Path.ChangeExtension(solutionPath, ".v11.suo");
+                var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v11.suo");
+                File.Delete(suoFilePath);
                 using (var stream = Resource.AsStream("Solution2012.suotemplate"))
                 {
                     WriteToStream(suoFilePath, startupProjectGuids, stream);
@@ -114,12 +132,5 @@ namespace SetStartupProjects
             cfStream.SetData(newBytes);
         }
 
-        static void DeleteExistingSuo(string solutionDirectory)
-        {
-            foreach (var suoFile in Directory.EnumerateFiles(solutionDirectory, "*.suo", SearchOption.AllDirectories))
-            {
-                File.Delete(suoFile);
-            }
-        }
     }
 }

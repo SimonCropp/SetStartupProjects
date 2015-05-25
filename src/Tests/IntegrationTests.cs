@@ -14,26 +14,27 @@ public class IntegrationTests
     [Test]
     public void SetStartupProjectsForSample()
     {
-        var testSolutionPath = Path.GetFullPath("../../../SampleSolution");
+        var solutionDirectory = Path.GetFullPath("../../../SampleSolution");
         var startupProjectGuids = new List<string>
         {
             "11111111-1111-1111-1111-111111111111",
             "22222222-2222-2222-2222-222222222222"
         };
-        var suoHacker = new SuoHacker();
-        suoHacker.CreateStartProjectSuoFiles(testSolutionPath, startupProjectGuids);
+        var startProjectSuoCreator = new StartProjectSuoCreator();
+        startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
     }
+
     [Test]
     public void SetStartupProjectsForSample2015()
     {
-        var testSolutionPath = Path.GetFullPath("../../../SampleSolution");
+        var solutionDirectory = Path.GetFullPath("../../../SampleSolution");
         var startupProjectGuids = new List<string>
         {
             "11111111-1111-1111-1111-111111111111",
             "22222222-2222-2222-2222-222222222222"
         };
-        var suoHacker = new SuoHacker();
-        suoHacker.CreateStartProjectSuoFiles(testSolutionPath, startupProjectGuids,VisualStudioVersions.Vs2015);
+        var startProjectSuoCreator = new StartProjectSuoCreator();
+        startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids, VisualStudioVersions.Vs2015);
     }
 
     [Test]
@@ -43,8 +44,8 @@ public class IntegrationTests
         var startupProjectGuids = new StartProjectFinder()
             .GetStartProjects(solutionDirectory)
             .ToList();
-        var suoHacker = new SuoHacker();
-        suoHacker.CreateStartProjectSuoFiles(solutionDirectory, startupProjectGuids);
+        var startProjectSuoCreator = new StartProjectSuoCreator();
+        startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
     }
 
     [Test]
@@ -80,4 +81,3 @@ public class IntegrationTests
         }
     }
 }
-

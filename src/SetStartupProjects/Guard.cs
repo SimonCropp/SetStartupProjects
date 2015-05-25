@@ -25,6 +25,14 @@ namespace SetStartupProjects
                 throw new ArgumentException(message, argumentName);
             }
         }
+        public static void AgainstNonExistingFile(string file, string argumentName)
+        {
+            if (!File.Exists(file))
+            {
+                var message = string.Format("File does not exist: {0}", file);
+                throw new ArgumentException(message, argumentName);
+            }
+        }
 
         public static void AgainstNullAndEmpty(ICollection value, string argumentName)
         {
