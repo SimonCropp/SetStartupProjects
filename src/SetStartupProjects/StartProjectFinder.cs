@@ -60,6 +60,7 @@ namespace SetStartupProjects
 
         protected internal bool ShouldIncludeProjectFile(Project project)
         {
+            Guard.AgainstNonExistingFile(project.Path, "Project");
             if (ShouldIncludeForFileExtension(Path.GetExtension(project.Path)))
             {
                 return true;
