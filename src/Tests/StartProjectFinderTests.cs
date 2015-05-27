@@ -19,7 +19,6 @@ public class StartProjectFinderTests
     public void WinExe_from_OutputType()
     {
         var projectText = Resource.AsString("OutputType_WinExe.txt");
-        string guid;
         Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
 
