@@ -14,38 +14,38 @@ public class IntegrationTests
     [Test]
     public void SetStartupProjectsForSample()
     {
-        var solutionDirectory = Path.GetFullPath("../../../SampleSolution");
+        var solutionFile = Path.GetFullPath("../../../SampleSolution/SampleSolution.sln");
         var startupProjectGuids = new List<string>
         {
             "11111111-1111-1111-1111-111111111111",
             "22222222-2222-2222-2222-222222222222"
         };
         var startProjectSuoCreator = new StartProjectSuoCreator();
-        startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
+        startProjectSuoCreator.CreateForSolutionFile(solutionFile, startupProjectGuids);
     }
 
     [Test]
     public void SetStartupProjectsForSample2015()
     {
-        var solutionDirectory = Path.GetFullPath("../../../SampleSolution");
+        var solutionFilePath = Path.GetFullPath("../../../SampleSolution/SampleSolution.sln");
         var startupProjectGuids = new List<string>
         {
             "11111111-1111-1111-1111-111111111111",
             "22222222-2222-2222-2222-222222222222"
         };
         var startProjectSuoCreator = new StartProjectSuoCreator();
-        startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids, VisualStudioVersions.Vs2015);
+        startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids, VisualStudioVersions.Vs2015);
     }
 
     [Test]
     public void Simple()
     {
-        var solutionDirectory = Path.GetFullPath("../../../SampleSolution");
+        var solutionFile = Path.GetFullPath("../../../SampleSolution/SampleSolution.sln");
         var startupProjectGuids = new StartProjectFinder()
-            .GetStartProjects(solutionDirectory)
+            .GetStartProjects(solutionFile)
             .ToList();
         var startProjectSuoCreator = new StartProjectSuoCreator();
-        startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
+        startProjectSuoCreator.CreateForSolutionFile(solutionFile, startupProjectGuids);
     }
 
     [Test]

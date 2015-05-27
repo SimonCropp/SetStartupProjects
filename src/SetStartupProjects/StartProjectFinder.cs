@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -14,7 +15,13 @@ namespace SetStartupProjects
     ///       <description>'StartAction' is 'Program'.</description> 
     ///     </item> 
     ///     <item> 
-    ///       <description>'OutputType' is 'exe'.</description> 
+    ///       <description>'OutputType' is 'Exe'.</description> 
+    ///     </item> 
+    ///     <item> 
+    ///       <description>'OutputType' is 'WinExe'.</description> 
+    ///     </item> 
+    ///     <item> 
+    ///       <description>Project extension is `ccproj` ie an Azure Cloud Service.</description> 
     ///     </item> 
     ///     <item> 
     ///       <description>Project type is 'ASP.NET MVC 1.0' ie '603C0E0B-DB56-11DC-BE95-000D561079B0'.</description> 
@@ -39,43 +46,74 @@ namespace SetStartupProjects
     public class StartProjectFinder
     {
         /// <summary>
-        /// Get the startup projects by looking at the projects contained in <paramref name="solutionDirectory"/>.
+        /// Get the startup projects by looking at the projects contained in <paramref name="solutionFile"/>.
         /// </summary>
-        public IEnumerable<string> GetStartProjects(string solutionDirectory)
+        public IEnumerable<string> GetStartProjects(string solutionFile)
         {
-            Guard.AgainstNullAndEmpty(solutionDirectory, "solutionDirectory");
-            Guard.AgainstNonExistingDirectory(solutionDirectory, "solutionDirectory");
-          
-            foreach (var projectFile in Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories))
+            Guard.AgainstNullAndEmpty(solutionFile, "solutionFile");
+            Guard.AgainstNonExistingFile(solutionFile, "solutionFile");
+
+            return from project in GetAllProjectFiles(solutionFile) 
+                   where ShouldIncludeProjectFile(project) 
+                   select project.Guid;
+        }
+
+        protected internal bool ShouldIncludeProjectFile(Project project)
+        {
+            if (ShouldIncludeForFileExtension(Path.GetExtension(project.Path)))
             {
-                using (var reader = File.OpenText(projectFile))
-                {
-                    string guid;
-                    if (ShouldInclude(reader, out guid))
-                    {
-                        yield return guid;
-                    }
-                }
+                return true;
+            }
+            using (var reader = File.OpenText(project.Path))
+            {
+                var xDocument = XDocument.Load(reader);
+                return ShouldIncludeProjectXml(xDocument, project.Path);
             }
         }
 
-        internal bool ShouldInclude(StreamReader reader, out string guid)
+        bool ShouldIncludeForFileExtension(string extension)
         {
-            var xDocument = XDocument.Load(reader);
+            return extension == ".ccproj";
+        }
+
+        protected internal IEnumerable<Project> GetAllProjectFiles(string solutionFile)
+        {
+            var solutionDirectory = Path.GetDirectoryName(solutionFile);
+            foreach (var line in File.ReadAllLines(solutionFile))
+            {
+                if (!line.StartsWith("Project("))
+                {
+                    continue;
+                }
+                var strings = line.Split(new[] { "\", \"" },StringSplitOptions.RemoveEmptyEntries);
+                var projectPath = Path.Combine(solutionDirectory,strings[1]);
+                var guid = strings[2].Trim('{', '}','"');
+                yield return new Project
+                {
+                    Path = projectPath,
+                    Guid = guid
+                };
+            }
+        }
+
+        public class Project
+        {
+            public string Guid;
+            public string Path;
+        }
+
+        protected internal bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
+        {
             xDocument.StripNamespace();
             var xElement = xDocument.Root;
             var propertyGroup = xElement
                 .Element("PropertyGroup");
-            guid = propertyGroup
-                .Element("ProjectGuid")
-                .Value
-                .Trim('{', '}');
 
-            if (ShouldIncludeForStartActionIsProgram(xDocument))
+            if (ShouldIncludeForStartAction(xDocument))
             {
                 return true;
             }
-            if (ShouldIncludeForExe(propertyGroup))
+            if (ShouldIncludeForOutputType(propertyGroup))
             {
                 return true;
             }
@@ -83,38 +121,41 @@ namespace SetStartupProjects
             {
                 return true;
             }
-            guid = null;
             return false;
         }
 
-        static bool ShouldIncludeForStartActionIsProgram(XDocument xDocument)
+        protected internal bool ShouldIncludeForStartAction(XDocument xDocument)
         {
             return xDocument.Descendants("StartAction")
                 .Any(x => x.Value == "Program");
         }
 
-        static bool ShouldIncludeForExe(XElement propertyGroup)
+        protected internal bool ShouldIncludeForOutputType(XElement propertyGroup)
         {
-            if (propertyGroup.Element("OutputType").Value == "Exe")
+            var outputType = propertyGroup.Element("OutputType").Value;
+            if (
+                outputType == "Exe" ||
+                outputType == "WinExe" 
+                )
             {
                 return true;
             }
             return false;
         }
 
-        static bool ShouldIncludeFromProjectTypeGuids(XElement propertyGroup)
+        protected internal bool ShouldIncludeFromProjectTypeGuids(XElement propertyGroup)
         {
             var projectTypes = propertyGroup.Element("ProjectTypeGuids");
             if (projectTypes != null)
             {
                 return projectTypes.Value.Split(';')
                     .Select(x => x.Trim('{', '}'))
-                    .Any(typeGuid => includeGuids.Any(x => x == typeGuid));
+                    .Any(typeGuid => DefaultIncludedGuids.Any(x => x == typeGuid));
             }
             return false;
         }
 
-        static List<string> includeGuids = new List<string>
+        protected internal List<string> DefaultIncludedGuids = new List<string>
         {
             "603C0E0B-DB56-11DC-BE95-000D561079B0", //ASP.NET MVC 1.0	
             "F85E285D-A4E0-4152-9332-AB1D724D3325", //ASP.NET MVC 2.0	

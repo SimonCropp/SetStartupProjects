@@ -17,14 +17,6 @@ namespace SetStartupProjects
             }
         }
 
-        public static void AgainstNonExistingDirectory(string directory, string argumentName)
-        {
-            if (!Directory.Exists(directory))
-            {
-                var message = string.Format("Directory does not exist: {0}", directory);
-                throw new ArgumentException(message, argumentName);
-            }
-        }
         public static void AgainstNonExistingFile(string file, string argumentName)
         {
             if (!File.Exists(file))

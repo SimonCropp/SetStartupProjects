@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.IO;
+using System.Xml.Linq;
+using NUnit.Framework;
+using ObjectApproval;
 using Resourcer;
 using SetStartupProjects;
 
@@ -8,65 +11,59 @@ public class StartProjectFinderTests
     [Test]
     public void Exe_from_OutputType()
     {
-        using (var reader = Resource.AsStreamReader("OutputType_Exe.txt"))
-        {
-            string guid;
-            Assert.IsTrue(new StartProjectFinder().ShouldInclude(reader, out guid));
-            Assert.AreEqual("D04CF1FC-C4C0-4959-A817-2BC68770CA9B", guid);
-        }
+        var projectText = Resource.AsString("OutputType_Exe.txt");
+        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText),""));
     }
+
+    [Test]
+    public void WinExe_from_OutputType()
+    {
+        var projectText = Resource.AsString("OutputType_WinExe.txt");
+        string guid;
+        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
+    }
+
     [Test]
     public void StartActionIsProgram()
     {
-        using (var reader = Resource.AsStreamReader("StartActionIsProgram.txt"))
-        {
-            string guid;
-            Assert.IsTrue(new StartProjectFinder().ShouldInclude(reader, out guid));
-            Assert.AreEqual("D04CF1FC-C4C0-4959-A817-2BC68770CA9B", guid);
-        }
+        var projectText = Resource.AsString("StartActionIsProgram.txt");
+        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
 
     [Test]
     public void Lib_from_OutputType()
     {
-        using (var reader = Resource.AsStreamReader("OutputType_Lib.txt"))
-        {
-            string guid;
-            Assert.IsFalse(new StartProjectFinder().ShouldInclude(reader, out guid));
-            Assert.IsNull(guid);
-        }
+        var projectText = Resource.AsString("OutputType_Lib.txt");
+        Assert.IsFalse(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
 
     [Test]
     public void Multiple_excluded_project_types()
     {
-        using (var reader = Resource.AsStreamReader("Multiple_Exclude.txt"))
-        {
-            string guid;
-            Assert.IsFalse(new StartProjectFinder().ShouldInclude(reader, out guid));
-            Assert.IsNull(guid);
-        }
+        var projectText = Resource.AsString("Multiple_Exclude.txt");
+        Assert.IsFalse(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
 
     [Test]
     public void Multiple_include_project_types()
     {
-        using (var reader = Resource.AsStreamReader("Multiple_Include.txt"))
-        {
-            string guid;
-            Assert.IsTrue(new StartProjectFinder().ShouldInclude(reader, out guid));
-            Assert.AreEqual("D04CF1FC-C4C0-4959-A817-2BC68770CA9B", guid);
-        }
+        var projectText = Resource.AsString("Multiple_Include.txt");
+        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
+
     [Test]
     public void Lower_project_types()
     {
-        using (var reader = Resource.AsStreamReader("Lower_Include.txt"))
-        {
-            string guid;
-            Assert.IsTrue(new StartProjectFinder().ShouldInclude(reader, out guid));
-            Assert.AreEqual("D04CF1FC-C4C0-4959-A817-2BC68770CA9B", guid);
-        }
+        var projectText = Resource.AsString("Lower_Include.txt");
+        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
-  
+
+    [Test]
+    public void GetAllProjectFiles()
+    {
+        var samplesolutionTxt = Path.GetFullPath("SampleSolution.txt");
+        var allProjectFiles = new StartProjectFinder().GetAllProjectFiles(samplesolutionTxt);
+        var directoryName = Path.GetDirectoryName(samplesolutionTxt);
+        ObjectApprover.VerifyWithJson(allProjectFiles,s => s.Replace(@"\\",@"\").Replace(directoryName,""));
+    }
 }

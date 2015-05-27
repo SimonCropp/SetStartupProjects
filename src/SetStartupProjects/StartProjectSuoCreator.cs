@@ -14,30 +14,12 @@ namespace SetStartupProjects
     public class StartProjectSuoCreator
     {
         /// <summary>
-        /// Create suo startup files for all solutions in a given directory.
-        /// </summary>
-        /// <remarks>
-        /// All existing suo files will be overwritten.
-        /// </remarks>
-        public void CreateForSolutionDirectory(string solutionDirectory, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
-        {
-            Guard.AgainstNullAndEmpty(solutionDirectory, "solutionDirectory");
-            Guard.AgainstNonExistingDirectory(solutionDirectory, "solutionDirectory");
-            Guard.AgainstNullAndEmpty(startupProjectGuids, "startupProjectGuids");
-
-            foreach (var solutionFilePath in Directory.EnumerateFiles(solutionDirectory, "*.sln"))
-            {
-                CreateForSolutionFiles(solutionFilePath, startupProjectGuids, visualStudioVersions);   
-            }
-        }
-
-        /// <summary>
         /// Create suo startup files for a specific solution file.
         /// </summary>
         /// <remarks>
         /// All existing suo files will be overwritten.
         /// </remarks>
-        public void CreateForSolutionFiles(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
+        public void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
         {
             Guard.AgainstNullAndEmpty(solutionFilePath, "solutionFilePath");
             Guard.AgainstNonExistingFile(solutionFilePath, "solutionFilePath");
