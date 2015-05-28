@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Guard.cs" />
+    <Compile Include="SolutionProjectExtractor.cs" />
     <Compile Include="StartProjectFinder.cs" />
     <Compile Include="StartProjectSuoCreator.cs" />
     <Compile Include="AssemblyInfo.cs" />

@@ -1,7 +1,5 @@
-﻿using System.IO;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using NUnit.Framework;
-using ObjectApproval;
 using Resourcer;
 using SetStartupProjects;
 
@@ -12,7 +10,7 @@ public class StartProjectFinderTests
     public void Exe_from_OutputType()
     {
         var projectText = Resource.AsString("OutputType_Exe.txt");
-        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText),""));
+        Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
     }
 
     [Test]
@@ -55,14 +53,5 @@ public class StartProjectFinderTests
     {
         var projectText = Resource.AsString("Lower_Include.txt");
         Assert.IsTrue(new StartProjectFinder().ShouldIncludeProjectXml(XDocument.Parse(projectText), ""));
-    }
-
-    [Test]
-    public void GetAllProjectFiles()
-    {
-        var samplesolutionTxt = Path.GetFullPath("SampleSolution.txt");
-        var allProjectFiles = new StartProjectFinder().GetAllProjectFiles(samplesolutionTxt);
-        var directoryName = Path.GetDirectoryName(samplesolutionTxt);
-        ObjectApprover.VerifyWithJson(allProjectFiles,s => s.Replace(@"\\",@"\").Replace(directoryName,""));
     }
 }

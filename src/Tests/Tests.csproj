@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SolutionProjectExtractorTests.cs" />
     <Compile Include="StartProjectFinderTests.cs" />
     <Compile Include="IntegrationTests.cs" />
   </ItemGroup>

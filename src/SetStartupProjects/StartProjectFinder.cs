@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -53,54 +52,29 @@ namespace SetStartupProjects
             Guard.AgainstNullAndEmpty(solutionFile, "solutionFile");
             Guard.AgainstNonExistingFile(solutionFile, "solutionFile");
 
-            return from project in GetAllProjectFiles(solutionFile) 
+            return from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
                    where ShouldIncludeProjectFile(project) 
                    select project.Guid;
         }
 
         protected internal bool ShouldIncludeProjectFile(Project project)
         {
-            Guard.AgainstNonExistingFile(project.Path, "Project");
-            if (ShouldIncludeForFileExtension(Path.GetExtension(project.Path)))
+            var projectFile = project.FullPath;
+            Guard.AgainstNonExistingFile(projectFile, "Project");
+            if (ShouldIncludeForFileExtension(Path.GetExtension(projectFile)))
             {
                 return true;
             }
-            using (var reader = File.OpenText(project.Path))
+            using (var reader = File.OpenText(projectFile))
             {
                 var xDocument = XDocument.Load(reader);
-                return ShouldIncludeProjectXml(xDocument, project.Path);
+                return ShouldIncludeProjectXml(xDocument, projectFile);
             }
         }
 
         bool ShouldIncludeForFileExtension(string extension)
         {
             return extension == ".ccproj";
-        }
-
-        protected internal IEnumerable<Project> GetAllProjectFiles(string solutionFile)
-        {
-            var solutionDirectory = Path.GetDirectoryName(solutionFile);
-            foreach (var line in File.ReadAllLines(solutionFile))
-            {
-                if (!line.StartsWith("Project("))
-                {
-                    continue;
-                }
-                var strings = line.Split(new[] { "\", \"" },StringSplitOptions.RemoveEmptyEntries);
-                var projectPath = Path.Combine(solutionDirectory,strings[1]);
-                var guid = strings[2].Trim('{', '}','"');
-                yield return new Project
-                {
-                    Path = projectPath,
-                    Guid = guid
-                };
-            }
-        }
-
-        public class Project
-        {
-            public string Guid;
-            public string Path;
         }
 
         protected internal bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
