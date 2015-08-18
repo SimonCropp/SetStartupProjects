@@ -29,6 +29,13 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ClassLibraryFS", "ClassLibr
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureCloudService", "AzureCloudService\AzureCloudService.ccproj", "{C188FCEA-C469-4B03-B39E-DC092370F0EC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{7819F70F-C8E3-4C3A-9A1D-8A7858D14433}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{5F4BEE9F-3118-4E9E-9922-BC1EF4B4E010}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
