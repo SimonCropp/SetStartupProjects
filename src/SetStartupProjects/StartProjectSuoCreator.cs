@@ -32,36 +32,36 @@ namespace SetStartupProjects
                 Directory.CreateDirectory(suoDirectoryPath);
                 var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
                 File.Delete(suoFilePath);
-                using (var stream = Resource.AsStream("Solution2015.suotemplate"))
+                using (var templateStream = Resource.AsStream("Solution2015.suotemplate"))
                 {
-                    WriteToStream(suoFilePath, startupProjectGuids, stream);
+                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
                 }
             }
             if ((visualStudioVersions & VisualStudioVersions.Vs2013) == VisualStudioVersions.Vs2013)
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v12.suo");
                 File.Delete(suoFilePath);
-                using (var stream = Resource.AsStream("Solution2013.suotemplate"))
+                using (var templateStream = Resource.AsStream("Solution2013.suotemplate"))
                 {
-                    WriteToStream(suoFilePath, startupProjectGuids, stream);
+                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
                 }
             }
             if ((visualStudioVersions & VisualStudioVersions.Vs2012) == VisualStudioVersions.Vs2012)
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v11.suo");
                 File.Delete(suoFilePath);
-                using (var stream = Resource.AsStream("Solution2012.suotemplate"))
+                using (var templateStream = Resource.AsStream("Solution2012.suotemplate"))
                 {
-                    WriteToStream(suoFilePath, startupProjectGuids, stream);
+                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
                 }
             }
         }
 
-        static void WriteToStream(string suoFilePath, List<string> startupProjectGuids, Stream stream)
+        static void WriteToStream(string suoFilePath, List<string> startupProjectGuids, Stream templateStream)
         {
             try
             {
-                using (var compoundFile = new CompoundFile(stream, UpdateMode.ReadOnly, true, true, false))
+                using (var compoundFile = new CompoundFile(templateStream, UpdateMode.ReadOnly, true, true, false))
                 {
                     compoundFile.RootStorage.Delete("SolutionConfiguration");
                     var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
