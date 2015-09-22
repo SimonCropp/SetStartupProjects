@@ -54,9 +54,9 @@
       <HintPath>..\packages\ObjectApproval.1.2.0\Lib\NET40\ObjectApproval.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenMcdf, Version=1.5.4.22637, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\OpenMcdf.1.5.4.22637\lib\OpenMcdf.dll</HintPath>
+    <Reference Include="OpenMcdf, Version=2.0.5739.40493, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenMcdf.2.0.5739.40493\lib\OpenMcdf.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Resourcer">
       <HintPath>..\packages\Resourcer.Fody.1.3.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\Resourcer.dll</HintPath>

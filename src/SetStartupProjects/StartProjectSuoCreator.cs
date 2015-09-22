@@ -61,7 +61,8 @@ namespace SetStartupProjects
         {
             try
             {
-                using (var compoundFile = new CompoundFile(templateStream, UpdateMode.ReadOnly, true, true, false))
+
+                using (var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
                 {
                     compoundFile.RootStorage.Delete("SolutionConfiguration");
                     var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");

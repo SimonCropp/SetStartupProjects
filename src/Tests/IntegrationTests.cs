@@ -56,7 +56,7 @@ public class IntegrationTests
             .Single(x => x.Name == "utf-16")
             .GetEncoding();
         using (var solutionStream = File.OpenRead(suoPath))
-        using (var compoundFile = new CompoundFile(solutionStream, UpdateMode.ReadOnly, true, true, false))
+        using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
         {
             var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
             var bytes = configStream.GetData();
@@ -69,7 +69,7 @@ public class IntegrationTests
     {
         var suoPath = "../../../SampleSolution/SampleSolution.v12.suo";
         using (var solutionStream = File.OpenRead(suoPath))
-        using (var compoundFile = new CompoundFile(solutionStream, UpdateMode.ReadOnly, true, true, false))
+        using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
         {
             var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
             var bytes = configStream.GetData();
