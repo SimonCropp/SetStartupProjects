@@ -4,6 +4,7 @@ https://nuget.org/packages/SetStartupProjects/
 
     PM> Install-Package SetStartupProjects
 
+
 ## Justification
 
 At [Particular](http://particular.net/), as part of our [documentation site](http://docs.particular.net/), we **manipulate Visual Studio .suo files** to allow us to control the start-up projects of our [downloadable samples](http://docs.particular.net/samples/). 
@@ -18,9 +19,11 @@ Often people forget to set start-up projects and one of two things happen:
 1. If a Class Library is first Visual Studio gives a warning about "A Class Library cannot be started directly"
 2. If startable project is first it will start, but fails to start the other projects in the solution, resulting in the sample failing to run as expected.  
 
+
 ### Why not commit the SUO to source control
 
 The start-up projects for a solution are stored in the [Solution User Options (.Suo) File](https://msdn.microsoft.com/en-us/library/bb165909.aspx). It is possible to modify the start-up projects, save the solution (and hence `.suo`), and the commit that `.suo` to source control. The problem is that the `.suo` stores many other user preferences and, since it is binary, it is not possible to "only commit the start-up projects". This  adds friction to the people maintain the samples since they need to be very careful about changes to the `.suo` and the effect those changes have on downstream consumers.
+
 
 ## Surely this is a solved problem 
 
@@ -28,6 +31,7 @@ Visual Studio was released in 1995 and with it the concept of an `.suo` configur
 
 * **Manipulate the order of projects in a solution**: The [Sln Startup Project](https://github.com/michaKFromParis/slnStartupProject) can change the start-up projects by leveraging the side effect of Visual Studio starting the first project. It works by reordering the projects in the `.sln` file. However this approach only works for a single start-up project.
 * **Switch from within Visual Studio**: The [switchstartupproject](https://bitbucket.org/thirteen/switchstartupproject/wiki/Home) is a Visual Studio extension that supports multiple combinations of startup projects. Very useful but not an option since the context of this problem is not inside Visual Studio.
+
 
 ## The underlying format of an suo 
 
@@ -40,6 +44,7 @@ This project uses [Open MCDF](http://openmcdf.sourceforge.net/) ([nuget](https:/
 > OpenMCDF is a 100% managed .net component that allows client applications to manipulate COM structured storage files, also known as Microsoft Compound Document Format files.
 
 OpenMCDF ships with a sample Windows Forms application, for browsing and editing files, named "Structured Storage Explorer".
+
 
 ## The underlying suo structure
 
@@ -59,6 +64,7 @@ Opening the `.suo` for this solution in Structured Storage Explorer and navigati
 
 You will note the text contains the project GUIDs mentioned above. 
 
+
 ## The Encoding of the `SolutionConfiguration` Stream 
 
 Note that the "Structured Storage Explorer" has trouble decoding the binary value of the stream. This is due it making an incorrect assumption on the encoding.
@@ -69,7 +75,7 @@ The encoding of the `SolutionConfiguration` Stream is Utf16, although this was o
         .Single(x => x.Name == "utf-16")
         .GetEncoding();
     using (var solutionStream = File.OpenRead(suoPath))
-    using (var compoundFile = new CompoundFile(solutionStream, UpdateMode.ReadOnly, true, true, false))
+    using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
     {
         var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
         var bytes = configStream.GetData();
@@ -83,7 +89,7 @@ Which gives us this
 Note that Visual Studio has trouble rendering the characters. If you instead save the contents to a text file. 
 
     using (var solutionStream = File.OpenRead(suoPath))
-    using (var compoundFile = new CompoundFile(solutionStream, UpdateMode.ReadOnly, true, true, false))
+    using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
     {
         var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
         var bytes = configStream.GetData();
@@ -100,21 +106,26 @@ Opening `temp.txt` in [Sublime Text](http://www.sublimetext.com/) will reveal th
 
 Note the existence of [control characters](http://en.wikipedia.org/wiki/Control_character#In_ASCII) explains why both the MCDF explorer and Visual Studio had trouble rendering them.
 
+
 ## Dissecting the contents
 
 There are several other settings stored in the configuration stream. The important parts related to enabling multiple start projects are as follows:
+
 
 ### The key indicating the start of the multiple startup section:
 
 ![](Images/enablemultistart.png)
 
+
 ### Defining each project that should be part of the multiple start:
 
 ![](Images/startprojectformat.png)
 
+
 ### Redundant information
 
 The rest are configuration options and [miscellaneous project files](https://msdn.microsoft.com/en-us/library/bb166496.aspx) that Visual Studio would usually default to when there is no `.suo`. 
+
 
 ## Minimum settings to write back
 
@@ -122,9 +133,11 @@ For the sample solutions project GUIDs the minimum that needs to be written back
 
 ![](Images/desiredoutput.png)
 
+
 ## The suo templated used
 
 As to include minimum baggage (extra `.suo` settings) this project uses a template '.suo' taken from an empty project. This was created using a new empty solution with no projects and save the solution to produce an, almost empty, `.suo` file `SampleSolution.v12.suo`. Note that in this use case **the target `.suo` is replaced and not modified**.
+
 
 ## The MultiStartupProj writing code
 
@@ -166,6 +179,7 @@ The underlying code to write the startup GUIDs to the `.suo` is as follows:
         cfStream.SetData(newBytes);
     }
 
+
 ## Using the library on the Sample Solution
 
 Using the SetStartupProjects nuget the startup projects for the Sample Solution can be written back using the following:
@@ -178,11 +192,13 @@ Using the SetStartupProjects nuget the startup projects for the Sample Solution 
     var startProjectSuoCreator = new StartProjectSuoCreator();
     startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
 
+
 ## Verifying the results
 
 Opening the Sample Solution you will note the startup projects have been changed.
 
 ![](Images/itworked.png)
+
 
 ## How to determine start projects
 
@@ -196,9 +212,11 @@ Determining the startup projects for a solution can be derived using a combinati
 
 You can, of course, write your own logic for determining startup project GUIDs and pass them to `StartProjectSuoCreator`. 
 
+
 ## Multiple versions of Visual Studio
   
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013 and 2015. 
+
 
 ## Icon 
 
