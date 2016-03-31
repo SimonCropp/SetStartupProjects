@@ -22,8 +22,12 @@ namespace SetStartupProjects
         public void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
         {
             Guard.AgainstNullAndEmpty(solutionFilePath, "solutionFilePath");
+            Guard.AgainstNull(startupProjectGuids, "startupProjectGuids");
             Guard.AgainstNonExistingFile(solutionFilePath, "solutionFilePath");
-            Guard.AgainstNullAndEmpty(startupProjectGuids, "startupProjectGuids");
+            if (startupProjectGuids.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("startupProjectGuids", $"For solutionFilePath: '{solutionFilePath}'");
+            }
             var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
             if ((visualStudioVersions & VisualStudioVersions.Vs2015) == VisualStudioVersions.Vs2015)
             {
@@ -74,7 +78,7 @@ namespace SetStartupProjects
             catch (Exception exception)
             {
                 var joinedGuids = string.Join(" ", startupProjectGuids);
-                var message = string.Format("Could not create .suo file for '{0}'. Guids: {1}", suoFilePath, joinedGuids);
+                var message = $"Could not create .suo file for '{suoFilePath}'. Guids: {joinedGuids}";
                 throw new Exception(message, exception);
             }
         }

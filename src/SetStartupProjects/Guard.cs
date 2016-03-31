@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.IO;
 
 // ReSharper disable UnusedParameter.Global
@@ -17,24 +16,19 @@ namespace SetStartupProjects
             }
         }
 
-        public static void AgainstNonExistingFile(string file, string argumentName)
-        {
-            if (!File.Exists(file))
-            {
-                var message = string.Format("File does not exist: {0}", file);
-                throw new ArgumentException(message, argumentName);
-            }
-        }
-
-        public static void AgainstNullAndEmpty(ICollection value, string argumentName)
+        public static void AgainstNull(object value, string argumentName)
         {
             if (value == null)
             {
                 throw new ArgumentNullException(argumentName);
             }
-            if (value.Count == 0)
+        }
+
+        public static void AgainstNonExistingFile(string file, string argumentName)
+        {
+            if (!File.Exists(file))
             {
-                throw new ArgumentOutOfRangeException(argumentName);
+                throw new ArgumentException($"File does not exist: {file}", argumentName);
             }
         }
     }
