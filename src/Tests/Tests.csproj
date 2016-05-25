@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -34,26 +35,28 @@
     <WarningLevel>4</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ApprovalTests, Version=3.0.0.0, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
-      <HintPath>..\packages\ApprovalTests.3.0.10\lib\net40\ApprovalTests.dll</HintPath>
+      <HintPath>..\packages\ApprovalTests.3.0.11\lib\net40\ApprovalTests.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ApprovalUtilities, Version=3.0.0.0, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
-      <HintPath>..\packages\ApprovalUtilities.3.0.10\lib\net45\ApprovalUtilities.dll</HintPath>
+      <HintPath>..\packages\ApprovalUtilities.3.0.11\lib\net45\ApprovalUtilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ApprovalUtilities.Net45, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ApprovalUtilities.3.0.10\lib\net45\ApprovalUtilities.Net45.dll</HintPath>
+      <HintPath>..\packages\ApprovalUtilities.3.0.11\lib\net45\ApprovalUtilities.Net45.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ObjectApproval, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ObjectApproval.1.3.0\lib\NET40\ObjectApproval.dll</HintPath>
