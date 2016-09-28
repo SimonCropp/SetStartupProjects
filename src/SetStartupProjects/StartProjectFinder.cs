@@ -79,6 +79,13 @@ namespace SetStartupProjects
 
         protected internal bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
         {
+            var directoryName = Path.GetDirectoryName(projectFile);
+            var netCoreLaunchSettingsFile = Path.Combine(directoryName, "Properties", "launchSettings.json");
+            if (File.Exists(netCoreLaunchSettingsFile))
+            {
+                return true;
+            }
+
             xDocument.StripNamespace();
             var xElement = xDocument.Root;
             var propertyGroup = xElement
@@ -107,13 +114,18 @@ namespace SetStartupProjects
 
         protected internal bool ShouldIncludeForOutputType(XElement propertyGroup)
         {
-            var outputType = propertyGroup.Element("OutputType").Value;
-            if (
-                outputType == "Exe" ||
-                outputType == "WinExe"
-                )
+            var xElement = propertyGroup.Element("OutputType");
+            // OutputType can be null for xprojs
+            if (xElement != null)
             {
-                return true;
+                var outputType = xElement.Value;
+                if (
+                    outputType == "Exe" ||
+                    outputType == "WinExe"
+                )
+                {
+                    return true;
+                }
             }
             return false;
         }
