@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -53,22 +54,30 @@ namespace SetStartupProjects
             Guard.AgainstNonExistingFile(solutionFile, "solutionFile");
 
             return from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
-                   where ShouldIncludeProjectFile(project)
-                   select project.Guid;
+                where ShouldIncludeProjectFile(project)
+                select project.Guid;
         }
 
         protected internal bool ShouldIncludeProjectFile(Project project)
         {
             var projectFile = project.FullPath;
             Guard.AgainstNonExistingFile(projectFile, "Project");
-            if (ShouldIncludeForFileExtension(Path.GetExtension(projectFile)))
+            try
             {
-                return true;
+
+                if (ShouldIncludeForFileExtension(Path.GetExtension(projectFile)))
+                {
+                    return true;
+                }
+                using (var reader = File.OpenText(projectFile))
+                {
+                    var xDocument = XDocument.Load(reader);
+                    return ShouldIncludeProjectXml(xDocument, projectFile);
+                }
             }
-            using (var reader = File.OpenText(projectFile))
+            catch (Exception exception)
             {
-                var xDocument = XDocument.Load(reader);
-                return ShouldIncludeProjectXml(xDocument, projectFile);
+                throw new Exception($"Failed {nameof(ShouldIncludeProjectFile)}: {projectFile}", exception);
             }
         }
 
