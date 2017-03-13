@@ -54,16 +54,16 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ObjectApproval, Version=1.5.0.0, Culture=neutral, PublicKeyToken=c7a34512ecd69090, processorArchitecture=MSIL">
       <HintPath>..\packages\ObjectApproval.1.5.0\lib\NET40\ObjectApproval.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenMcdf, Version=2.0.5739.40493, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenMcdf.2.0.5739.40493\lib\OpenMcdf.dll</HintPath>
+    <Reference Include="OpenMcdf, Version=2.1.0.33051, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenMcdf.2.1.0.33051\lib\OpenMcdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Resourcer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=409b3227471b0f0d, processorArchitecture=MSIL">
