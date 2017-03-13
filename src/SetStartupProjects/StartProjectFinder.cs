@@ -83,7 +83,8 @@ namespace SetStartupProjects
 
         bool ShouldIncludeForFileExtension(string extension)
         {
-            return extension == ".ccproj";
+            return extension == ".ccproj" ||
+                   extension == ".sfproj";
         }
 
         protected internal bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
