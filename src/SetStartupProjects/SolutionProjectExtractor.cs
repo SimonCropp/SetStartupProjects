@@ -5,13 +5,14 @@ using System.IO;
 namespace SetStartupProjects
 {
     /// <summary>
-    /// Helper that extracts all the project paths and guids from a solution. 
+    /// Helper that extracts all the project paths and guids from a solution.
     /// </summary>
     public static class SolutionProjectExtractor
     {
 
         public static IEnumerable<Project> GetAllProjectFiles(string solutionFile)
         {
+            Guard.AgainstNullAndEmpty(solutionFile, nameof(solutionFile));
             var solutionDirectory = Path.GetDirectoryName(solutionFile);
             foreach (var line in File.ReadAllLines(solutionFile))
             {
@@ -19,7 +20,7 @@ namespace SetStartupProjects
                 {
                     continue;
                 }
-                var strings = line.Split(new[] { "\", \"" },StringSplitOptions.RemoveEmptyEntries);
+                var strings = line.Split(new[] {"\", \""}, StringSplitOptions.RemoveEmptyEntries);
                 var guidType = strings[0].Split('{', '}')[1];
                 var guid = strings[2].Trim('{', '}', '"');
                 var fullPath = Path.Combine(solutionDirectory, strings[1]);
@@ -38,11 +39,11 @@ namespace SetStartupProjects
         }
     }
 
-        public class Project
-        {
-            public string Guid;
-            public string RelativePath;
-            public string FullPath;
-        }
+    public class Project
+    {
+        public string Guid;
+        public string RelativePath;
+        public string FullPath;
+    }
 
 }

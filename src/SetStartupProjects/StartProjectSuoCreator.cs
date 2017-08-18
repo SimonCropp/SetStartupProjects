@@ -21,14 +21,15 @@ namespace SetStartupProjects
         /// </remarks>
         public void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
         {
-            Guard.AgainstNullAndEmpty(solutionFilePath, "solutionFilePath");
-            Guard.AgainstNull(startupProjectGuids, "startupProjectGuids");
-            Guard.AgainstNonExistingFile(solutionFilePath, "solutionFilePath");
+            Guard.AgainstNullAndEmpty(solutionFilePath, nameof(solutionFilePath));
+            Guard.AgainstNull(startupProjectGuids, nameof(startupProjectGuids));
+            Guard.AgainstNonExistingFile(solutionFilePath, nameof(solutionFilePath));
             if (startupProjectGuids.Count == 0)
             {
-                throw new ArgumentOutOfRangeException("startupProjectGuids", $"For solutionFilePath: '{solutionFilePath}'");
+                throw new ArgumentOutOfRangeException(nameof(startupProjectGuids), $"For solutionFilePath: '{solutionFilePath}'");
             }
             var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
+
             if ((visualStudioVersions & VisualStudioVersions.Vs2017) == VisualStudioVersions.Vs2017)
             {
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
@@ -41,6 +42,7 @@ namespace SetStartupProjects
                     WriteToStream(suoFilePath, startupProjectGuids, templateStream);
                 }
             }
+
             if ((visualStudioVersions & VisualStudioVersions.Vs2015) == VisualStudioVersions.Vs2015)
             {
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
@@ -53,6 +55,7 @@ namespace SetStartupProjects
                     WriteToStream(suoFilePath, startupProjectGuids, templateStream);
                 }
             }
+
             if ((visualStudioVersions & VisualStudioVersions.Vs2013) == VisualStudioVersions.Vs2013)
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v12.suo");
@@ -62,6 +65,7 @@ namespace SetStartupProjects
                     WriteToStream(suoFilePath, startupProjectGuids, templateStream);
                 }
             }
+
             if ((visualStudioVersions & VisualStudioVersions.Vs2012) == VisualStudioVersions.Vs2012)
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v11.suo");
@@ -77,7 +81,6 @@ namespace SetStartupProjects
         {
             try
             {
-
                 using (var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
                 {
                     compoundFile.RootStorage.Delete("SolutionConfiguration");

@@ -50,8 +50,8 @@ namespace SetStartupProjects
         /// </summary>
         public IEnumerable<string> GetStartProjects(string solutionFile)
         {
-            Guard.AgainstNullAndEmpty(solutionFile, "solutionFile");
-            Guard.AgainstNonExistingFile(solutionFile, "solutionFile");
+            Guard.AgainstNullAndEmpty(solutionFile, nameof(solutionFile));
+            Guard.AgainstNonExistingFile(solutionFile, nameof(solutionFile));
 
             return from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
                 where ShouldIncludeProjectFile(project)
