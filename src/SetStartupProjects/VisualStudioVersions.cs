@@ -23,7 +23,7 @@ namespace SetStartupProjects
         /// <summary>
         /// Target suo creation for Visual Studio 2017.
         /// </summary>
-        Vs2017 = 5,
+        Vs2017 = 8,
         /// <summary>
         /// Target suo creation for Visual Studio versions 2012, 2013, 2015 and 2017.
         /// </summary>
