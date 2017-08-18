@@ -29,6 +29,18 @@ namespace SetStartupProjects
                 throw new ArgumentOutOfRangeException("startupProjectGuids", $"For solutionFilePath: '{solutionFilePath}'");
             }
             var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
+            if ((visualStudioVersions & VisualStudioVersions.Vs2017) == VisualStudioVersions.Vs2017)
+            {
+                var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
+                var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v15");
+                Directory.CreateDirectory(suoDirectoryPath);
+                var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
+                File.Delete(suoFilePath);
+                using (var templateStream = Resource.AsStream("Solution2017.suotemplate"))
+                {
+                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+                }
+            }
             if ((visualStudioVersions & VisualStudioVersions.Vs2015) == VisualStudioVersions.Vs2015)
             {
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);

@@ -38,6 +38,19 @@ public class IntegrationTests
     }
 
     [Test]
+    public void SetStartupProjectsForSample2017()
+    {
+        var solutionFilePath = Path.GetFullPath("../../../SampleSolution/SampleSolution.sln");
+        var startupProjectGuids = new List<string>
+        {
+            "11111111-1111-1111-1111-111111111111",
+            "22222222-2222-2222-2222-222222222222"
+        };
+        var startProjectSuoCreator = new StartProjectSuoCreator();
+        startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids, VisualStudioVersions.Vs2017);
+    }
+
+    [Test]
     public void Simple()
     {
         var solutionFile = Path.GetFullPath("../../../SampleSolution/SampleSolution.sln");

@@ -72,6 +72,7 @@
     <EmbeddedResource Include="Solution2012.suotemplate" />
     <EmbeddedResource Include="Solution2013.suotemplate" />
     <EmbeddedResource Include="Solution2015.suotemplate" />
+    <EmbeddedResource Include="Solution2017.suotemplate" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -86,10 +87,10 @@
       <FilesToDelete Include="$(NugetDir)**\*.*" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-    <MakeDir Directories="$(NugetDir)Lib\NET452\" />
+    <MakeDir Directories="$(NugetDir)lib\net452\" />
     <Copy SourceFiles="$(ProjectDir)NugetAssets\SetStartupProjects.nuspec" DestinationFolder="$(NugetDir)" />
-    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(NugetDir)Lib\NET452\$(TargetFileName)&quot; /internalize  &quot;$(TargetPath)&quot; &quot;$(TargetDir)OpenMcdf.dll&quot; /target:library /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
-    <Copy SourceFiles="$(OutputPath)SetStartupProjects.xml" DestinationFolder="$(NugetDir)Lib\NET452" />
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(NugetDir)lib\net452\$(TargetFileName)&quot; /internalize  &quot;$(TargetPath)&quot; &quot;$(TargetDir)OpenMcdf.dll&quot; /target:library /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
+    <Copy SourceFiles="$(OutputPath)SetStartupProjects.xml" DestinationFolder="$(NugetDir)lib\net452" />
     <PepitaPackage.CreatePackageTask NuGetBuildDirectory="$(NugetDir)" MetadataAssembly="$(OutputPath)SetStartupProjects.dll" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
