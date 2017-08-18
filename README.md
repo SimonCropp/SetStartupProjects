@@ -7,7 +7,7 @@ https://nuget.org/packages/SetStartupProjects/
 
 ## Justification
 
-At [Particular](http://particular.net/), as part of our [documentation site](http://docs.particular.net/), we **manipulate Visual Studio .suo files** to allow us to control the start-up projects of our [downloadable samples](http://docs.particular.net/samples/). 
+At [Particular](http://particular.net/), as part of our [documentation site](http://docs.particular.net/), we **manipulate Visual Studio .suo files** to allow us to control the start-up projects of our [downloadable samples](http://docs.particular.net/samples/).
 
 Many of our samples have multiple "startable" components, eg services and websites that interact. To run correctly all these components have to run when the solution is "started". The default behavior of Visual Studio is to "set the first project in the solution as the start project". This is problematic since it results in several friction points:
 
@@ -25,7 +25,7 @@ Often people forget to set start-up projects and one of two things happen:
 The start-up projects for a solution are stored in the [Solution User Options (.Suo) File](https://msdn.microsoft.com/en-us/library/bb165909.aspx). It is possible to modify the start-up projects, save the solution (and hence `.suo`), and the commit that `.suo` to source control. The problem is that the `.suo` stores many other user preferences and, since it is binary, it is not possible to "only commit the start-up projects". This  adds friction to the people maintain the samples since they need to be very careful about changes to the `.suo` and the effect those changes have on downstream consumers.
 
 
-## Surely this is a solved problem 
+## Surely this is a solved problem
 
 Visual Studio was released in 1995 and with it the concept of an `.suo` configuration file. Generally when a technology has been around for 20 years most of the problems are solved. If not there are enough nuggets of information around to piece together a solution. This does not seem to be the case for setting start project using code. There are several other approaches which do not match our requirements: 
 
@@ -210,12 +210,12 @@ Determining the startup projects for a solution can be derived using a combinati
     var startProjectSuoCreator = new StartProjectSuoCreator();
     startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
 
-You can, of course, write your own logic for determining startup project GUIDs and pass them to `StartProjectSuoCreator`. 
+You can, of course, write your own logic for determining startup project GUIDs and pass them to `StartProjectSuoCreator`.
 
 
 ## Multiple versions of Visual Studio
   
-`StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013 and 2015. 
+`StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
 
 
 ## Icon 
