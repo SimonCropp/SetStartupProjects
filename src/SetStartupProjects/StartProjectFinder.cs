@@ -7,7 +7,7 @@ using System.Xml.Linq;
 namespace SetStartupProjects
 {
     /// <summary>
-    ///  Helper class for extracting Visual Studio startup projects by looking at the projects contained in the solution directory and allplying some conventions.
+    ///  Helper class for extracting Visual Studio startup projects by looking at the projects contained in the solution directory and applying some conventions.
     ///
     /// The current conventions are as follows:
     ///   <list type="bullet">

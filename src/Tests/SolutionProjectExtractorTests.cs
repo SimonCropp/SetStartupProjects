@@ -10,9 +10,9 @@ public class SolutionProjectExtractorTests
     [Test]
     public void GetAllProjectFiles()
     {
-        var samplesolutionTxt = Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleSolution.txt");
-        var directoryName = Path.GetDirectoryName(samplesolutionTxt);
-        var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles(samplesolutionTxt);
+        var sampleSolutionTxt = Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleSolution.txt");
+        var directoryName = Path.GetDirectoryName(sampleSolutionTxt);
+        var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles(sampleSolutionTxt);
         ObjectApprover.VerifyWithJson(allProjectFiles, s => s.Replace(@"\\", @"\").Replace(directoryName, ""));
     }
 }
