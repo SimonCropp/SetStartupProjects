@@ -15,6 +15,14 @@ public class StartProjectFinderTests
     }
 
     [Test]
+    public void Conditional_Exe_from_OutputType()
+    {
+        var projectText = Resource.AsString("OutputType_Conditional_Exe.txt");
+        var finder = new StartProjectFinder();
+        Assert.IsTrue(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
+    }
+
+    [Test]
     public void WinExe_from_OutputType()
     {
         var projectText = Resource.AsString("OutputType_WinExe.txt");

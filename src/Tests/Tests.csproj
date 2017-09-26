@@ -92,6 +92,7 @@
     <EmbeddedResource Include="StartActionIsProgram.txt" />
     <EmbeddedResource Include="OutputType_Exe.txt" />
     <EmbeddedResource Include="OutputType_Lib.txt" />
+    <EmbeddedResource Include="OutputType_Conditional_Exe.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

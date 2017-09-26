@@ -97,21 +97,23 @@ namespace SetStartupProjects
             }
 
             xDocument.StripNamespace();
-            var xElement = xDocument.Root;
-            var propertyGroup = xElement
-                .Element("PropertyGroup");
-
             if (ShouldIncludeForStartAction(xDocument))
             {
                 return true;
             }
-            if (ShouldIncludeForOutputType(propertyGroup))
+            var xElement = xDocument.Root;
+            var propertyGroups = xElement
+                .Elements("PropertyGroup");
+            foreach (var propertyGroup in propertyGroups)
             {
-                return true;
-            }
-            if (ShouldIncludeFromProjectTypeGuids(propertyGroup))
-            {
-                return true;
+                if (ShouldIncludeForOutputType(propertyGroup))
+                {
+                    return true;
+                }
+                if (ShouldIncludeFromProjectTypeGuids(propertyGroup))
+                {
+                    return true;
+                }
             }
             return false;
         }
