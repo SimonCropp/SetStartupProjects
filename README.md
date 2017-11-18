@@ -7,7 +7,7 @@ https://nuget.org/packages/SetStartupProjects/
 
 ## Justification
 
-At [Particular](http://particular.net/), as part of our [documentation site](http://docs.particular.net/), we **manipulate Visual Studio .suo files** to allow us to control the start-up projects of our [downloadable samples](http://docs.particular.net/samples/).
+At [Particular](http://particular.net/), as part of the [documentation site](http://docs.particular.net/), **manipulating Visual Studio .suo files** to allows control of start-up projects of [downloadable samples](http://docs.particular.net/samples/).
 
 Many of our samples have multiple "startable" components, eg services and websites that interact. To run correctly all these components have to run when the solution is "started". The default behavior of Visual Studio is to "set the first project in the solution as the start project". This is problematic since it results in several friction points:
 
@@ -16,8 +16,8 @@ Many of our samples have multiple "startable" components, eg services and websit
 
 Often people forget to set start-up projects and one of two things happen:
 
-1. If a Class Library is first Visual Studio gives a warning about "A Class Library cannot be started directly"
-2. If startable project is first it will start, but fails to start the other projects in the solution, resulting in the sample failing to run as expected.  
+ 1. If a Class Library is first Visual Studio gives a warning about "A Class Library cannot be started directly"
+ 1. If startable project is first it will start, but fails to start the other projects in the solution, resulting in the sample failing to run as expected.  
 
 
 ### Why not commit the SUO to source control
@@ -33,7 +33,7 @@ Visual Studio was released in 1995 and with it the concept of an `.suo` configur
 * **Switch from within Visual Studio**: The [switchstartupproject](https://bitbucket.org/thirteen/switchstartupproject/wiki/Home) is a Visual Studio extension that supports multiple combinations of startup projects. Very useful but not an option since the context of this problem is not inside Visual Studio.
 
 
-## The underlying format of an suo 
+## The underlying format of an suo
 
 A `.suo` is actually a "OLE Compound Document File" which seems to be synonymous with the [Microsoft Compound File Binary File (MCDF) Format](https://msdn.microsoft.com/en-us/library/dd942138.aspx). This is the same format used by previous generation Office documents (`.doc`, `.xls`, `.ppt`).
 

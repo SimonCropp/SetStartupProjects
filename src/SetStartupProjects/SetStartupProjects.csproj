@@ -88,7 +88,7 @@
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
     <MakeDir Directories="$(NugetDir)lib\net452\" />
-    <Copy SourceFiles="$(ProjectDir)NugetAssets\SetStartupProjects.nuspec" DestinationFolder="$(NugetDir)" />
+    <Copy SourceFiles="$(ProjectDir)SetStartupProjects.nuspec" DestinationFolder="$(NugetDir)" />
     <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(NugetDir)lib\net452\$(TargetFileName)&quot; /internalize  &quot;$(TargetPath)&quot; &quot;$(TargetDir)OpenMcdf.dll&quot; /target:library /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
     <Copy SourceFiles="$(OutputPath)SetStartupProjects.xml" DestinationFolder="$(NugetDir)lib\net452" />
     <PepitaPackage.CreatePackageTask NuGetBuildDirectory="$(NugetDir)" MetadataAssembly="$(OutputPath)SetStartupProjects.dll" />

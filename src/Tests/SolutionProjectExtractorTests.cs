@@ -6,7 +6,6 @@ using SetStartupProjects;
 [TestFixture]
 public class SolutionProjectExtractorTests
 {
-
     [Test]
     public void GetAllProjectFiles()
     {
