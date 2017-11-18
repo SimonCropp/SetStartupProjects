@@ -45,6 +45,13 @@ namespace SetStartupProjects
     /// </summary>
     public class StartProjectFinder
     {
+        IEnumerable<string> GuessStartupProjects(string solutionFile)
+        {
+            return from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
+                where ShouldIncludeProjectFile(project)
+                select project.Guid;
+        }
+
         /// <summary>
         /// Get the startup projects by looking at the projects contained in <paramref name="solutionFile"/>.
         /// </summary>
@@ -53,9 +60,30 @@ namespace SetStartupProjects
             Guard.AgainstNullAndEmpty(solutionFile, nameof(solutionFile));
             Guard.AgainstNonExistingFile(solutionFile, nameof(solutionFile));
 
-            return from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
-                where ShouldIncludeProjectFile(project)
-                select project.Guid;
+            var nameWithoutExtension = Path.GetFileNameWithoutExtension(solutionFile);
+            var solutionDirectory = Path.GetDirectoryName(solutionFile);
+            var defaultProjectsTextFile = Path.Combine(solutionDirectory, $"{nameWithoutExtension}.StartupProjects.txt");
+            if (!File.Exists(defaultProjectsTextFile))
+            {
+                foreach (var startProject in GuessStartupProjects(solutionFile))
+                {
+                    yield return startProject;
+                }
+                yield break;
+            }
+            var allPossibleProjects = SolutionProjectExtractor.GetAllProjectFiles(solutionFile).ToList();
+            var defaultProjects = File.ReadAllLines(defaultProjectsTextFile)
+                .Where(x => !string.IsNullOrWhiteSpace(x));
+            foreach (var startupProject in defaultProjects)
+            {
+                var project = allPossibleProjects.FirstOrDefault(x => x.RelativePath == startupProject);
+                if (project == null)
+                {
+                    var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
+                    throw new Exception(error);
+                }
+                yield return project.Guid;
+            }
         }
 
         protected internal bool ShouldIncludeProjectFile(Project project)

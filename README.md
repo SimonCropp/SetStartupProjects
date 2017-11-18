@@ -5,6 +5,41 @@ https://nuget.org/packages/SetStartupProjects/
     PM> Install-Package SetStartupProjects
 
 
+## Usage
+
+
+### Passing in explicit Guids
+
+The raw api makes no assumptions and takes an explicit list of project guids.
+
+    var startupProjectGuids = new List<string>
+    {
+        "11111111-1111-1111-1111-111111111111",
+        "22222222-2222-2222-2222-222222222222"
+    };
+    var startProjectSuoCreator = new StartProjectSuoCreator();
+    startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids);
+
+
+### Use the build in convention
+
+By default startable projects are detected though interrogating the project files, i.e. all projects that are considered startable will be added to the startable list. To override this convention and hard code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects.
+
+For example if the solution "TheSolution.sln" contains two projects and you only want to start Project1 the content of TheSolution.StartupProjects.txt would be:
+
+```
+Project1\Project1.csproj
+```
+
+```
+var startupProjectGuids = new StartProjectFinder()
+    .GetStartProjects(solutionFilePath)
+    .ToList();
+var startProjectSuoCreator = new StartProjectSuoCreator();
+startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids);
+```
+
+
 ## Justification
 
 At [Particular](http://particular.net/), as part of the [documentation site](http://docs.particular.net/), **manipulating Visual Studio .suo files** to allows control of start-up projects of [downloadable samples](http://docs.particular.net/samples/).
@@ -198,19 +233,6 @@ Using the SetStartupProjects nuget the startup projects for the Sample Solution 
 Opening the Sample Solution you will note the startup projects have been changed.
 
 ![](Images/itworked.png)
-
-
-## How to determine start projects
-
-Determining the startup projects for a solution can be derived using a combination the the `.csproj` content, some xml querying, and a [lookup list of projects that can be considered startable](http://www.mztools.com/articles/2008/mz2008017.aspx). This is encapsulating in the `StartProjectFinder` class.
-
-    var startupProjectGuids = new StartProjectFinder()
-        .GetStartProjects(solutionDirectory)
-        .ToList();
-    var startProjectSuoCreator = new StartProjectSuoCreator();
-    startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
-
-You can, of course, write your own logic for determining startup project GUIDs and pass them to `StartProjectSuoCreator`.
 
 
 ## Multiple versions of Visual Studio

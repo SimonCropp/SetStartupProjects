@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using NUnit.Framework;
 using Resourcer;
 using SetStartupProjects;
@@ -12,6 +14,15 @@ public class StartProjectFinderTests
         var projectText = Resource.AsString("OutputType_Exe.txt");
         var finder = new StartProjectFinder();
         Assert.IsTrue(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
+    }
+
+    [Test]
+    public void GetStartupProjectsWithDefault()
+    {
+        var solution = Path.Combine(TestContext.CurrentContext.TestDirectory, "SimpleSolutionWithDefault/SimpleSolution.sln");
+        var finder = new StartProjectFinder();
+        var startupProjects = finder.GetStartProjects(solution);
+        Assert.AreEqual("11111111-1111-1111-1111-111111111111", startupProjects.Single());
     }
 
     [Test]
