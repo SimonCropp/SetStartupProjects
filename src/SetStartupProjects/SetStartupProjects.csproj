@@ -66,9 +66,6 @@
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NugetAssets\SetStartupProjects.nuspec">
-      <SubType>Designer</SubType>
-    </None>
     <EmbeddedResource Include="Solution2012.suotemplate" />
     <EmbeddedResource Include="Solution2013.suotemplate" />
     <EmbeddedResource Include="Solution2015.suotemplate" />
