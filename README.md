@@ -31,6 +31,8 @@ For example if the solution "TheSolution.sln" contains two projects and you only
 Project1\Project1.csproj
 ```
 
+And then can be used as follows:
+
 ```
 var startupProjectGuids = new StartProjectFinder()
     .GetStartProjects(solutionFilePath)
