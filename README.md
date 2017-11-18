@@ -44,12 +44,12 @@ startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGui
 
 ## Justification
 
-At [Particular](http://particular.net/), as part of the [documentation site](http://docs.particular.net/), **manipulating Visual Studio .suo files** to allows control of start-up projects of [downloadable samples](http://docs.particular.net/samples/).
+At [Particular](http://particular.net/), as part of the [documentation site](http://docs.particular.net/), **manipulating Visual Studio .suo files** allows control of start-up projects of [downloadable samples](http://docs.particular.net/samples/).
 
-Many of our samples have multiple "startable" components, eg services and websites that interact. To run correctly all these components have to run when the solution is "started". The default behavior of Visual Studio is to "set the first project in the solution as the start project". This is problematic since it results in several friction points:
+Many of the samples have multiple "startable" components, eg services and websites that interact. To run correctly all these components have to run when the solution is "started". The default behavior of Visual Studio is to "set the first project in the solution as the start project". This is problematic since it results in several friction points:
 
-* Multiple start-up projects need to be documented, taking up space better used for the sample description.
-* People who download samples need manually setting the start-up projects.
+ * Multiple start-up projects need to be documented, taking up space better used for the sample description.
+ * People who download samples need manually setting the start-up projects.
 
 Often people forget to set start-up projects and one of two things happen:
 
