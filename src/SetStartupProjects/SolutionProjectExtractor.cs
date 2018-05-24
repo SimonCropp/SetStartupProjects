@@ -38,12 +38,4 @@ namespace SetStartupProjects
             }
         }
     }
-
-    public class Project
-    {
-        public string Guid;
-        public string RelativePath;
-        public string FullPath;
-    }
-
 }

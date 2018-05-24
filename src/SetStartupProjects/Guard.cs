@@ -3,33 +3,29 @@ using System.IO;
 
 // ReSharper disable UnusedParameter.Global
 
-namespace SetStartupProjects
+static class Guard
 {
-    static class Guard
+    public static void AgainstNullAndEmpty(string value, string argumentName)
     {
-
-        public static void AgainstNullAndEmpty(string value, string argumentName)
+        if (string.IsNullOrWhiteSpace(value))
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentNullException(argumentName);
-            }
+            throw new ArgumentNullException(argumentName);
         }
+    }
 
-        public static void AgainstNull(object value, string argumentName)
+    public static void AgainstNull(object value, string argumentName)
+    {
+        if (value == null)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(argumentName);
-            }
+            throw new ArgumentNullException(argumentName);
         }
+    }
 
-        public static void AgainstNonExistingFile(string file, string argumentName)
+    public static void AgainstNonExistingFile(string file, string argumentName)
+    {
+        if (!File.Exists(file))
         {
-            if (!File.Exists(file))
-            {
-                throw new ArgumentException($"File does not exist: {file}", argumentName);
-            }
+            throw new ArgumentException($"File does not exist: {file}", argumentName);
         }
     }
 }

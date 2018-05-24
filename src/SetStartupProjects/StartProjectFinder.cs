@@ -76,7 +76,7 @@ namespace SetStartupProjects
                 .Where(x => !string.IsNullOrWhiteSpace(x));
             foreach (var startupProject in defaultProjects)
             {
-                var project = allPossibleProjects.FirstOrDefault(x => x.RelativePath == startupProject);
+                var project = allPossibleProjects.FirstOrDefault(x => string.Equals(x.RelativePath, startupProject, StringComparison.OrdinalIgnoreCase));
                 if (project == null)
                 {
                     var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
@@ -160,8 +160,8 @@ namespace SetStartupProjects
             {
                 var outputType = xElement.Value;
                 if (
-                    outputType == "Exe" ||
-                    outputType == "WinExe"
+                    string.Equals(outputType, "Exe", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(outputType, "WinExe", StringComparison.OrdinalIgnoreCase)
                 )
                 {
                     return true;
@@ -177,7 +177,7 @@ namespace SetStartupProjects
             {
                 return projectTypes.Value.Split(';')
                     .Select(x => x.Trim('{', '}'))
-                    .Any(typeGuid => DefaultIncludedGuids.Any(x => x == typeGuid));
+                    .Any(typeGuid => DefaultIncludedGuids.Any(x => string.Equals(x, typeGuid, StringComparison.OrdinalIgnoreCase)));
             }
             return false;
         }

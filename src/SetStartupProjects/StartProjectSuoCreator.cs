@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using OpenMcdf;
-using Resourcer;
 
 namespace SetStartupProjects
 {
@@ -100,7 +99,7 @@ namespace SetStartupProjects
 
         static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startupProjectGuids)
         {
-            var single = Encoding.GetEncodings().Single(x => x.Name == "utf-16");
+            var single = Encoding.GetEncodings().Single(x => string.Equals(x.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
             var encoding = single.GetEncoding();
             var nul = '\u0000';
             var dc1 = '\u0011';
