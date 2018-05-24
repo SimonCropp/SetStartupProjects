@@ -1,17 +1,14 @@
 ﻿using System.IO;
-using NUnit.Framework;
 using ObjectApproval;
 using SetStartupProjects;
+using Xunit;
 
-[TestFixture]
 public class SolutionProjectExtractorTests
 {
-    [Test]
+    [Fact]
     public void GetAllProjectFiles()
     {
-        var sampleSolutionTxt = Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleSolution.txt");
-        var directoryName = Path.GetDirectoryName(sampleSolutionTxt);
-        var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles(sampleSolutionTxt);
-        ObjectApprover.VerifyWithJson(allProjectFiles, s => s.Replace(@"\\", @"\").Replace(directoryName, ""));
+        var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles("SampleSolution.txt");
+        ObjectApprover.VerifyWithJson(allProjectFiles, s => s.Replace(@"\\", @"\").Replace(Directory.GetCurrentDirectory(), ""));
     }
 }
