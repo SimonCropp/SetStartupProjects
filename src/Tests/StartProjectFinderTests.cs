@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Xml.Linq;
-using Resourcer;
 using SetStartupProjects;
 using Xunit;
 
@@ -9,7 +9,7 @@ public class StartProjectFinderTests
     [Fact]
     public void Exe_from_OutputType()
     {
-        var projectText = Resource.AsString("OutputType_Exe.txt");
+        var projectText = File.ReadAllText("OutputType_Exe.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -25,7 +25,7 @@ public class StartProjectFinderTests
     [Fact]
     public void Conditional_Exe_from_OutputType()
     {
-        var projectText = Resource.AsString("OutputType_Conditional_Exe.txt");
+        var projectText = File.ReadAllText("OutputType_Conditional_Exe.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -33,7 +33,7 @@ public class StartProjectFinderTests
     [Fact]
     public void WinExe_from_OutputType()
     {
-        var projectText = Resource.AsString("OutputType_WinExe.txt");
+        var projectText = File.ReadAllText("OutputType_WinExe.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -41,7 +41,7 @@ public class StartProjectFinderTests
     [Fact]
     public void StartActionIsProgram()
     {
-        var projectText = Resource.AsString("StartActionIsProgram.txt");
+        var projectText = File.ReadAllText("StartActionIsProgram.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -49,7 +49,7 @@ public class StartProjectFinderTests
     [Fact]
     public void Lib_from_OutputType()
     {
-        var projectText = Resource.AsString("OutputType_Lib.txt");
+        var projectText = File.ReadAllText("OutputType_Lib.txt");
         var finder = new StartProjectFinder();
         Assert.False(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -57,7 +57,7 @@ public class StartProjectFinderTests
     [Fact]
     public void WebApplication_xproj()
     {
-        var projectText = Resource.AsString("WebApplication_xproj.txt");
+        var projectText = File.ReadAllText("WebApplication_xproj.txt");
         var finder = new StartProjectFinder();
         Assert.False(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -65,7 +65,7 @@ public class StartProjectFinderTests
     [Fact]
     public void Multiple_excluded_project_types()
     {
-        var projectText = Resource.AsString("Multiple_Exclude.txt");
+        var projectText = File.ReadAllText("Multiple_Exclude.txt");
         var finder = new StartProjectFinder();
         Assert.False(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -73,7 +73,7 @@ public class StartProjectFinderTests
     [Fact]
     public void Multiple_include_project_types()
     {
-        var projectText = Resource.AsString("Multiple_Include.txt");
+        var projectText = File.ReadAllText("Multiple_Include.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
@@ -81,7 +81,7 @@ public class StartProjectFinderTests
     [Fact]
     public void Lower_project_types()
     {
-        var projectText = Resource.AsString("Lower_Include.txt");
+        var projectText = File.ReadAllText("Lower_Include.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
     }
