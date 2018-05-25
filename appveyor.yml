@@ -6,6 +6,7 @@ install:
 before_build:
 - ps: nuget restore
 build:
+  project: SetStartupProjects.sln
   verbosity: minimal
 test_script:
 - cmd: >-
