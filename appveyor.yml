@@ -1,6 +1,4 @@
 image: Visual Studio 2017
-services:
-- mssql2017
 configuration: Release
 platform: Any CPU
 install:
