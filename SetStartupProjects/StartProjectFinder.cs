@@ -86,7 +86,7 @@ namespace SetStartupProjects
             }
         }
 
-        protected internal bool ShouldIncludeProjectFile(Project project)
+        bool ShouldIncludeProjectFile(Project project)
         {
             var projectFile = project.FullPath;
             Guard.AgainstNonExistingFile(projectFile, "Project");
@@ -146,13 +146,13 @@ namespace SetStartupProjects
             return false;
         }
 
-        protected internal bool ShouldIncludeForStartAction(XDocument xDocument)
+        bool ShouldIncludeForStartAction(XDocument xDocument)
         {
             return xDocument.Descendants("StartAction")
                 .Any(x => x.Value == "Program");
         }
 
-        protected internal bool ShouldIncludeForOutputType(XElement propertyGroup)
+        bool ShouldIncludeForOutputType(XElement propertyGroup)
         {
             var xElement = propertyGroup.Element("OutputType");
             // OutputType can be null for xprojs
@@ -170,7 +170,7 @@ namespace SetStartupProjects
             return false;
         }
 
-        protected internal bool ShouldIncludeFromProjectTypeGuids(XElement propertyGroup)
+        bool ShouldIncludeFromProjectTypeGuids(XElement propertyGroup)
         {
             var projectTypes = propertyGroup.Element("ProjectTypeGuids");
             if (projectTypes != null)
@@ -182,7 +182,7 @@ namespace SetStartupProjects
             return false;
         }
 
-        protected internal List<string> DefaultIncludedGuids = new List<string>
+        static List<string> DefaultIncludedGuids = new List<string>
         {
             "603C0E0B-DB56-11DC-BE95-000D561079B0", //ASP.NET MVC 1.0
             "F85E285D-A4E0-4152-9332-AB1D724D3325", //ASP.NET MVC 2.0
