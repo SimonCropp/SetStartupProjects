@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net47</TargetFrameworks>
+    <TargetFrameworks>net471</TargetFrameworks>
     <Optimize>false</Optimize>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -51,7 +51,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj"/>
+    <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SimpleSolutionWithDefault\ClassLibrary\ClassLibrary.csproj">

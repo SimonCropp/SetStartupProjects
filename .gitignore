@@ -12,10 +12,10 @@
 *.pidb
 *.ncrunchsolution
 *.ncrunchproject
-.learningtransport
-
 .vs
 *.received.txt
+
+nugets/
 
 # Build results
 [Dd]ebug/
@@ -40,7 +40,6 @@
 *test-results*
 
 .vs/
-.learningtransport/
 nugets/
 
 # Visual Studio profiler
@@ -79,8 +78,6 @@ Thumbs.db
 # Folder config file
 Desktop.ini
 
-
-Fody/.DS_Store
 
 .DS_Store
 
