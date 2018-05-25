@@ -68,7 +68,9 @@
     <EmbeddedResource Include="Solution2013.suotemplate" />
     <EmbeddedResource Include="Solution2015.suotemplate" />
     <EmbeddedResource Include="Solution2017.suotemplate" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
