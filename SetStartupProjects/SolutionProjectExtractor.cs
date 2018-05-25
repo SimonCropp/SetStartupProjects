@@ -9,7 +9,6 @@ namespace SetStartupProjects
     /// </summary>
     public static class SolutionProjectExtractor
     {
-
         public static IEnumerable<Project> GetAllProjectFiles(string solutionFile)
         {
             Guard.AgainstNullAndEmpty(solutionFile, nameof(solutionFile));

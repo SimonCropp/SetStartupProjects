@@ -92,7 +92,6 @@ namespace SetStartupProjects
             Guard.AgainstNonExistingFile(projectFile, "Project");
             try
             {
-
                 if (ShouldIncludeForFileExtension(Path.GetExtension(projectFile)))
                 {
                     return true;
