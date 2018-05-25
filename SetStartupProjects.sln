@@ -1,8 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 15.0.27004.2009
-MinimumVisualStudioVersion = 15.0.27004.2009
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 15.0.26430.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetStartupProjects", "SetStartupProjects\SetStartupProjects.csproj", "{13AEE464-1D0F-4EA7-9686-6A4E96CC343F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DFF7FC13-F9C7-477E-A95E-855CD73FD9A0}"
