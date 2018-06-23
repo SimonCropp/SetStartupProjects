@@ -128,6 +128,10 @@ namespace SetStartupProjects
             {
                 return true;
             }
+            if (ShouldIncludeForWebSdk(xDocument))
+            {
+                return true;
+            }
             var xElement = xDocument.Root;
             var propertyGroups = xElement
                 .Elements("PropertyGroup");
@@ -145,10 +149,20 @@ namespace SetStartupProjects
             return false;
         }
 
-        bool ShouldIncludeForStartAction(XDocument xDocument)
+        bool ShouldIncludeForStartAction(XDocument document)
         {
-            return xDocument.Descendants("StartAction")
+            return document.Descendants("StartAction")
                 .Any(x => x.Value == "Program");
+        }
+
+        bool ShouldIncludeForWebSdk(XDocument document)
+        {
+            var attribute = document.Root.Attribute("Sdk");
+            if (attribute == null)
+            {
+                return false;
+            }
+            return attribute.Value== "Microsoft.NET.Sdk.Web";
         }
 
         bool ShouldIncludeForOutputType(XElement propertyGroup)

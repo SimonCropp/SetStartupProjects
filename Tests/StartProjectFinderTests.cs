@@ -15,6 +15,14 @@ public class StartProjectFinderTests
     }
 
     [Fact]
+    public void WebApplication_webSdk()
+    {
+        var projectText = File.ReadAllText("WebApplication_websdk.txt");
+        var finder = new StartProjectFinder();
+        Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
+    }
+
+    [Fact]
     public void GetStartupProjectsWithDefault()
     {
         var finder = new StartProjectFinder();
