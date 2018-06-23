@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net471;</TargetFrameworks>
+    <TargetFrameworks>net471</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Authors>Simon Cropp</Authors>
     <NoPackageAnalysis>true</NoPackageAnalysis>
@@ -13,7 +13,7 @@
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) Simon Cropp. All rights reserved</Copyright>
     <PackageTags>SUO, Visual Studio, Startup</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/SetStartupProjects/master/icon.png</PackageIconUrl>
-    <PackageProjectUrl>https://docs.particular.net/nuget/$(PackageId)</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/SimonCropp/SetStartupProjects</PackageProjectUrl>
     <PackageOutputPath>..\nugets</PackageOutputPath>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
     <NoWarn>CS1591</NoWarn>
