@@ -76,7 +76,7 @@ A `.suo` is actually a "OLE Compound Document File" which seems to be synonymous
 
 ## OpenMCDF
 
-This project uses [Open MCDF](http://openmcdf.sourceforge.net/) ([nuget](https://www.nuget.org/packages/OpenMcdf/)) to manipulate the underlying binary structure of the `.suo`. 
+This project uses [Open MCDF](https://github.com/ironfede/openmcdf) ([nuget](https://www.nuget.org/packages/OpenMcdf/)) to manipulate the underlying binary structure of the `.suo`. 
 
 > OpenMCDF is a 100% managed .net component that allows client applications to manipulate COM structured storage files, also known as Microsoft Compound Document Format files.
 
