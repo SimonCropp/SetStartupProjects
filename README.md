@@ -12,14 +12,15 @@ https://nuget.org/packages/SetStartupProjects/
 
 The raw api makes no assumptions and takes an explicit list of project guids.
 
-    var startupProjectGuids = new List<string>
-    {
-        "11111111-1111-1111-1111-111111111111",
-        "22222222-2222-2222-2222-222222222222"
-    };
-    var startProjectSuoCreator = new StartProjectSuoCreator();
-    startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids);
-
+```csharp
+var startupProjectGuids = new List<string>
+{
+    "11111111-1111-1111-1111-111111111111",
+    "22222222-2222-2222-2222-222222222222"
+};
+var startProjectSuoCreator = new StartProjectSuoCreator();
+startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids);
+```
 
 ### Use the build in convention
 
@@ -33,7 +34,7 @@ Project1\Project1.csproj
 
 And then can be used as follows:
 
-```
+```csharp
 var startupProjectGuids = new StartProjectFinder()
     .GetStartProjects(solutionFilePath)
     .ToList();
@@ -108,34 +109,38 @@ Note that the "Structured Storage Explorer" has trouble decoding the binary valu
 
 The encoding of the `SolutionConfiguration` Stream is Utf16, although this was only discovered by attempting multiple different encodings. Also from looking at other streams the choice of encoding does not seem to be consistent across all streams. You can read the value of the `SolutionConfiguration` Stream using the OpenMCDF library as follows:
 
-    var utf16 = Encoding.GetEncodings()
-        .Single(x => x.Name == "utf-16")
-        .GetEncoding();
-    using (var solutionStream = File.OpenRead(suoPath))
-    using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
-    {
-        var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
-        var bytes = configStream.GetData();
-        Debug.WriteLine(utf16.GetString(bytes));
-    }    
- 
+```csharp
+var utf16 = Encoding.GetEncodings()
+    .Single(x => x.Name == "utf-16")
+    .GetEncoding();
+using (var solutionStream = File.OpenRead(suoPath))
+using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
+{
+    var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
+    var bytes = configStream.GetData();
+    Debug.WriteLine(utf16.GetString(bytes));
+}
+```
+
 Which gives us this
 
     MultiStartupProj = ;4 {99999999-9999-9999-9999-999999999999}...
 
 Note that Visual Studio has trouble rendering the characters. If you instead save the contents to a text file. 
 
-    using (var solutionStream = File.OpenRead(suoPath))
-    using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
-    {
-        var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
-        var bytes = configStream.GetData();
+```csharp
+using (var solutionStream = File.OpenRead(suoPath))
+using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
+{
+    var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
+    var bytes = configStream.GetData();
 
-        var utf16 = Encoding.GetEncodings()
-            .Single(x => x.Name == "utf-16")
-            .GetEncoding();
-        File.WriteAllText("temp.txt", utf16.GetString(bytes), utf16);
-    }
+    var utf16 = Encoding.GetEncodings()
+        .Single(x => x.Name == "utf-16")
+        .GetEncoding();
+    File.WriteAllText("temp.txt", utf16.GetString(bytes), utf16);
+}
+```
 
 Opening `temp.txt` in [Sublime Text](http://www.sublimetext.com/) will reveal this (new lines added after `;` characters for clarity)
 
@@ -180,54 +185,58 @@ As to include minimum baggage (extra `.suo` settings) this project uses a templa
 
 The underlying code to write the startup GUIDs to the `.suo` is as follows:
 
-    static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startupProjectGuids)
-    {
-        var single = Encoding.GetEncodings().Single(x => x.Name == "utf-16");
-        var encoding = single.GetEncoding();
-        var NUL = '\u0000';
-        var DC1 = '\u0011';
-        var ETX = '\u0003';
-        var SOH = '\u0001';
+```csharp
+static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startupProjectGuids)
+{
+    var single = Encoding.GetEncodings().Single(x => x.Name == "utf-16");
+    var encoding = single.GetEncoding();
+    var NUL = '\u0000';
+    var DC1 = '\u0011';
+    var ETX = '\u0003';
+    var SOH = '\u0001';
 
-        var builder = new StringBuilder();
-        builder.Append(DC1);
+    var builder = new StringBuilder();
+    builder.Append(DC1);
+    builder.Append(NUL);
+    builder.Append("MultiStartupProj");
+    builder.Append(NUL);
+    builder.Append('=');
+    builder.Append(ETX);
+    builder.Append(SOH);
+    builder.Append(NUL);
+    builder.Append(';');
+    foreach (var startupProjectGuid in startupProjectGuids)
+    {
+        builder.Append('4');
         builder.Append(NUL);
-        builder.Append("MultiStartupProj");
+        builder.AppendFormat("{{{0}}}.dwStartupOpt", startupProjectGuid);
         builder.Append(NUL);
         builder.Append('=');
         builder.Append(ETX);
-        builder.Append(SOH);
+        builder.Append(DC1);
         builder.Append(NUL);
         builder.Append(';');
-        foreach (var startupProjectGuid in startupProjectGuids)
-        {
-            builder.Append('4');
-            builder.Append(NUL);
-            builder.AppendFormat("{{{0}}}.dwStartupOpt", startupProjectGuid);
-            builder.Append(NUL);
-            builder.Append('=');
-            builder.Append(ETX);
-            builder.Append(DC1);
-            builder.Append(NUL);
-            builder.Append(';');
-        }
-
-        var newBytes = encoding.GetBytes(builder.ToString());
-        cfStream.SetData(newBytes);
     }
+
+    var newBytes = encoding.GetBytes(builder.ToString());
+    cfStream.SetData(newBytes);
+}
+```
 
 
 ## Using the library on the Sample Solution
 
 Using the SetStartupProjects nuget the startup projects for the Sample Solution can be written back using the following:
 
-    var startupProjectGuids =new List<string>
-    {
-        "11111111-1111-1111-1111-111111111111",
-        "22222222-2222-2222-2222-222222222222"
-    };
-    var startProjectSuoCreator = new StartProjectSuoCreator();
-    startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
+```csharp
+var startupProjectGuids =new List<string>
+{
+    "11111111-1111-1111-1111-111111111111",
+    "22222222-2222-2222-2222-222222222222"
+};
+var startProjectSuoCreator = new StartProjectSuoCreator();
+startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
+```
 
 
 ## Verifying the results
@@ -238,10 +247,9 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 
 ## Multiple versions of Visual Studio
-  
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
 
 
 ## Icon 
 
-<a href="https://thenounproject.com/term/equestrian/56632/" target="_blank">Helmet</a> designed by <a href="https://thenounproject.com/gwyn751%40gmail.com/" target="_blank">Gwyn Lewis</a> from The Noun Project.
+<a href="https://thenounproject.com/term/equestrian/56632/" target="_blank">Equestrian</a> designed by <a href="https://thenounproject.com/gwyn751%40gmail.com/" target="_blank">Gwyn Lewis</a> from The Noun Project.
