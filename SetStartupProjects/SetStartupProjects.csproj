@@ -15,14 +15,8 @@
     <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/SetStartupProjects/master/icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/SimonCropp/SetStartupProjects</PackageProjectUrl>
     <PackageOutputPath>..\nugets</PackageOutputPath>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
-  <Target Name="IncludePDBsInPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
-    <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).pdb" PackagePath="lib/$(TargetFramework)" />
-    </ItemGroup>
-  </Target>
   <ItemGroup>
     <EmbeddedResource Include="Solution2012.suotemplate" />
     <EmbeddedResource Include="Solution2013.suotemplate" />
