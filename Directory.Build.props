@@ -7,5 +7,7 @@
     <AssemblyOriginatorKeyFile>../key.snk</AssemblyOriginatorKeyFile>
     <Version>1.6.0</Version>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 </Project>
