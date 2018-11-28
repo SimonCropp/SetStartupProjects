@@ -1,66 +1,66 @@
 ﻿[
   {
-    "Guid": "99999999-9999-9999-9999-999999999999",
+    "Guid": "Guid 1",
     "RelativePath": "ClassLibraryCS\ClassLibraryCS.csproj",
     "FullPath": "ClassLibraryCS\ClassLibraryCS.csproj"
   },
   {
-    "Guid": "11111111-1111-1111-1111-111111111111",
+    "Guid": "Guid 2",
     "RelativePath": "ConsoleApplicationCS\ConsoleApplicationCS.csproj",
     "FullPath": "ConsoleApplicationCS\ConsoleApplicationCS.csproj"
   },
   {
-    "Guid": "628A29CC-E572-40C4-8AEE-333D73D07404",
+    "Guid": "Guid 3",
     "RelativePath": "ClassLibraryVB\ClassLibraryVB.vbproj",
     "FullPath": "ClassLibraryVB\ClassLibraryVB.vbproj"
   },
   {
-    "Guid": "97AE33BD-7F0D-40AC-9964-A771771885DC",
+    "Guid": "Guid 4",
     "RelativePath": "ConsoleApplicationVB\ConsoleApplicationVB.vbproj",
     "FullPath": "ConsoleApplicationVB\ConsoleApplicationVB.vbproj"
   },
   {
-    "Guid": "18606457-FCF0-4D4E-BC5C-FB11D1230409",
+    "Guid": "Guid 5",
     "RelativePath": "ConsoleApplicationFS\ConsoleApplicationFS.fsproj",
     "FullPath": "ConsoleApplicationFS\ConsoleApplicationFS.fsproj"
   },
   {
-    "Guid": "1372F482-BCD4-4DDE-9B20-2999936AEEA1",
+    "Guid": "Guid 6",
     "RelativePath": "WpfApplicationVB\WpfApplicationVB.vbproj",
     "FullPath": "WpfApplicationVB\WpfApplicationVB.vbproj"
   },
   {
-    "Guid": "59AAAFE1-198C-4BB4-9538-072F8A5DC9DF",
+    "Guid": "Guid 7",
     "RelativePath": "WpfApplicationCS\WpfApplicationCS.csproj",
     "FullPath": "WpfApplicationCS\WpfApplicationCS.csproj"
   },
   {
-    "Guid": "A091F9A6-5AC1-4EFB-86B0-9A5EAA8C4A20",
+    "Guid": "Guid 8",
     "RelativePath": "WindowsFormsApplicationCS\WindowsFormsApplicationCS.csproj",
     "FullPath": "WindowsFormsApplicationCS\WindowsFormsApplicationCS.csproj"
   },
   {
-    "Guid": "11A80128-D9CA-4D63-8525-43854CFBD9DB",
+    "Guid": "Guid 9",
     "RelativePath": "WindowsFormsApplicationVB\WindowsFormsApplicationVB.vbproj",
     "FullPath": "WindowsFormsApplicationVB\WindowsFormsApplicationVB.vbproj"
   },
   {
-    "Guid": "660A14D1-72D0-4A9D-A51B-D0BC338E7688",
+    "Guid": "Guid 10",
     "RelativePath": "WebApplicationVB\WebApplicationVB.vbproj",
     "FullPath": "WebApplicationVB\WebApplicationVB.vbproj"
   },
   {
-    "Guid": "F8D988CE-ED35-4703-958A-F7771E4AF722",
+    "Guid": "Guid 11",
     "RelativePath": "WebApplicationCS\WebApplicationCS.csproj",
     "FullPath": "WebApplicationCS\WebApplicationCS.csproj"
   },
   {
-    "Guid": "915CBC1C-4F15-4293-B0C4-787CE4E82787",
+    "Guid": "Guid 12",
     "RelativePath": "ClassLibraryFS\ClassLibraryFS.fsproj",
     "FullPath": "ClassLibraryFS\ClassLibraryFS.fsproj"
   },
   {
-    "Guid": "C188FCEA-C469-4B03-B39E-DC092370F0EC",
+    "Guid": "Guid 13",
     "RelativePath": "AzureCloudService\AzureCloudService.ccproj",
     "FullPath": "AzureCloudService\AzureCloudService.ccproj"
   }
