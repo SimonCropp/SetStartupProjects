@@ -1,4 +1,4 @@
-## The nuget package [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg?style=flat)](https://www.nuget.org/packages/SetStartupProjects/)
+## The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg?style=flat)](https://www.nuget.org/packages/SetStartupProjects/)
 
 https://nuget.org/packages/SetStartupProjects/
 
@@ -76,6 +76,7 @@ Visual Studio was released in 1995 and with it the concept of an `.suo` configur
 ## The underlying format of an suo
 
 A `.suo` is actually a "OLE Compound Document File" which seems to be synonymous with the [Microsoft Compound File Binary File (MCDF) Format](https://msdn.microsoft.com/en-us/library/dd942138.aspx). This is the same format used by previous generation Office documents (`.doc`, `.xls`, `.ppt`).
+
 
 ## OpenMCDF
 
@@ -178,7 +179,7 @@ For the sample solutions project GUIDs the minimum that needs to be written back
 ![](Images/desiredoutput.png)
 
 
-## The suo templated used
+## The suo template used
 
 As to include minimum baggage (extra `.suo` settings) this project uses a template '.suo' taken from an empty project. This was created using a new empty solution with no projects and save the solution to produce an, almost empty, `.suo` file `SampleSolution.v12.suo`. Note that in this use case **the target `.suo` is replaced and not modified**.
 
@@ -252,6 +253,6 @@ Opening the Sample Solution you will note the startup projects have been changed
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
 
 
-## Icon 
+## Icon
 
 <a href="https://thenounproject.com/term/equestrian/56632/" target="_blank">Equestrian</a> designed by <a href="https://thenounproject.com/gwyn751%40gmail.com/" target="_blank">Gwyn Lewis</a> from The Noun Project.
