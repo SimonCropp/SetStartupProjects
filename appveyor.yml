@@ -1,16 +1,8 @@
 image: Visual Studio 2017
-configuration: Release
-platform: Any CPU
-install:
-- cmd: appveyor downloadfile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-before_build:
-- ps: nuget restore
-build:
-  project: SetStartupProjects.sln
-  verbosity: minimal
-test_script:
-- cmd: >-
-    dotnet test "Tests\Tests.csproj" --framework netcoreapp2.1 --configuration Release --no-build --output bin\Release\netcoreapp2.1
+build_script:
+- ps: >-
+    dotnet build --configuration Release
 
+    dotnet test --configuration Release --no-build --no-restore
 artifacts:
 - path: nugets\**\*.nupkg
