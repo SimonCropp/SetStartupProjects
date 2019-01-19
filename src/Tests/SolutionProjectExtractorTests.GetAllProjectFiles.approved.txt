@@ -1,0 +1,67 @@
+﻿[
+  {
+    Guid: 'Guid 1',
+    RelativePath: 'ClassLibraryCS\ClassLibraryCS.csproj',
+    FullPath: 'ClassLibraryCS\ClassLibraryCS.csproj'
+  },
+  {
+    Guid: 'Guid 2',
+    RelativePath: 'ConsoleApplicationCS\ConsoleApplicationCS.csproj',
+    FullPath: 'ConsoleApplicationCS\ConsoleApplicationCS.csproj'
+  },
+  {
+    Guid: 'Guid 3',
+    RelativePath: 'ClassLibraryVB\ClassLibraryVB.vbproj',
+    FullPath: 'ClassLibraryVB\ClassLibraryVB.vbproj'
+  },
+  {
+    Guid: 'Guid 4',
+    RelativePath: 'ConsoleApplicationVB\ConsoleApplicationVB.vbproj',
+    FullPath: 'ConsoleApplicationVB\ConsoleApplicationVB.vbproj'
+  },
+  {
+    Guid: 'Guid 5',
+    RelativePath: 'ConsoleApplicationFS\ConsoleApplicationFS.fsproj',
+    FullPath: 'ConsoleApplicationFS\ConsoleApplicationFS.fsproj'
+  },
+  {
+    Guid: 'Guid 6',
+    RelativePath: 'WpfApplicationVB\WpfApplicationVB.vbproj',
+    FullPath: 'WpfApplicationVB\WpfApplicationVB.vbproj'
+  },
+  {
+    Guid: 'Guid 7',
+    RelativePath: 'WpfApplicationCS\WpfApplicationCS.csproj',
+    FullPath: 'WpfApplicationCS\WpfApplicationCS.csproj'
+  },
+  {
+    Guid: 'Guid 8',
+    RelativePath: 'WindowsFormsApplicationCS\WindowsFormsApplicationCS.csproj',
+    FullPath: 'WindowsFormsApplicationCS\WindowsFormsApplicationCS.csproj'
+  },
+  {
+    Guid: 'Guid 9',
+    RelativePath: 'WindowsFormsApplicationVB\WindowsFormsApplicationVB.vbproj',
+    FullPath: 'WindowsFormsApplicationVB\WindowsFormsApplicationVB.vbproj'
+  },
+  {
+    Guid: 'Guid 10',
+    RelativePath: 'WebApplicationVB\WebApplicationVB.vbproj',
+    FullPath: 'WebApplicationVB\WebApplicationVB.vbproj'
+  },
+  {
+    Guid: 'Guid 11',
+    RelativePath: 'WebApplicationCS\WebApplicationCS.csproj',
+    FullPath: 'WebApplicationCS\WebApplicationCS.csproj'
+  },
+  {
+    Guid: 'Guid 12',
+    RelativePath: 'ClassLibraryFS\ClassLibraryFS.fsproj',
+    FullPath: 'ClassLibraryFS\ClassLibraryFS.fsproj'
+  },
+  {
+    Guid: 'Guid 13',
+    RelativePath: 'AzureCloudService\AzureCloudService.ccproj',
+    FullPath: 'AzureCloudService\AzureCloudService.ccproj'
+  }
+]
