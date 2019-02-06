@@ -4,8 +4,6 @@ https://nuget.org/packages/SetStartupProjects/
 
     PM> Install-Package SetStartupProjects
 
-**This project is supported by the community via [Patreon sponsorship](https://www.patreon.com/join/simoncropp). If you are using this project to deliver business value or build commercial software it is expected that you will provide support [via Patreon](https://www.patreon.com/join/simoncropp).**
-
 
 ## Usage
 

@@ -12,7 +12,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) Simon Cropp. All rights reserved</Copyright>
     <PackageTags>SUO, Visual Studio, Startup</PackageTags>
-    <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/SetStartupProjects/master/icon.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/SetStartupProjects/master/src/icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/SimonCropp/SetStartupProjects</PackageProjectUrl>
     <PackageOutputPath>..\..\nugets</PackageOutputPath>
     <NoWarn>CS1591</NoWarn>
@@ -22,8 +22,6 @@
     <EmbeddedResource Include="Solution2013.suotemplate" />
     <EmbeddedResource Include="Solution2015.suotemplate" />
     <EmbeddedResource Include="Solution2017.suotemplate" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-18618-05" PrivateAssets="All" />
     <PackageReference Include="OpenMcdf" Version="2.2.1.3" />
   </ItemGroup>
