@@ -45,7 +45,7 @@ startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGui
 
 ## Justification
 
-At [Particular](http://particular.net/), as part of the [documentation site](http://docs.particular.net/), **manipulating Visual Studio .suo files** allows control of start-up projects of [downloadable samples](http://docs.particular.net/samples/).
+As part of the a documentation site, **manipulating Visual Studio .suo files** allows control of start-up projects.
 
 Many of the samples have multiple "startable" components, eg services and websites that interact. To run correctly all these components have to run when the solution is "started". The default behavior of Visual Studio is to "set the first project in the solution as the start project". This is problematic since it results in several friction points:
 
@@ -167,7 +167,7 @@ There are several other settings stored in the configuration stream. The importa
 
 ### Redundant information
 
-The rest are configuration options and [miscellaneous project files](https://msdn.microsoft.com/en-us/library/bb166496.aspx) that Visual Studio would usually default to when there is no `.suo`. 
+The rest are configuration options and [miscellaneous project files](https://msdn.microsoft.com/en-us/library/bb166496.aspx) that Visual Studio would usually default to when there is no `.suo`.
 
 
 ## Minimum settings to write back
