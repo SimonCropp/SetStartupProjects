@@ -3,17 +3,13 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
     <Optimize>false</Optimize>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ObjectApproval" Version="9.1.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Xunit" Version="2.4.1" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+    <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WebApplication_websdk.txt">
@@ -49,11 +45,6 @@
     <EmbeddedResource Include="OutputType_Conditional_Exe.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="SimpleSolutionWithDefault\ClassLibrary\ClassLibrary.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
