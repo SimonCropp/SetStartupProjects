@@ -1,4 +1,4 @@
-## The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg?style=flat)](https://www.nuget.org/packages/SetStartupProjects/)
+## The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg)](https://www.nuget.org/packages/SetStartupProjects/)
 
 https://nuget.org/packages/SetStartupProjects/
 
