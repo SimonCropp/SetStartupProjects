@@ -3,8 +3,10 @@ using System.Linq;
 using System.Xml.Linq;
 using SetStartupProjects;
 using Xunit;
+using Xunit.Abstractions;
 
-public class StartProjectFinderTests
+public class StartProjectFinderTests :
+    XunitLoggingBase
 {
     [Fact]
     public void Exe_from_OutputType()
@@ -92,5 +94,10 @@ public class StartProjectFinderTests
         var projectText = File.ReadAllText("Lower_Include.txt");
         var finder = new StartProjectFinder();
         Assert.True(finder.ShouldIncludeProjectXml(XDocument.Parse(projectText), "/dir/project.csproj"));
+    }
+
+    public StartProjectFinderTests(ITestOutputHelper output) :
+        base(output)
+    {
     }
 }
