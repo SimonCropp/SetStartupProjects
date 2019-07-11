@@ -2,8 +2,6 @@
 
 https://nuget.org/packages/SetStartupProjects/
 
-    PM> Install-Package SetStartupProjects
-
 
 ## Usage
 
