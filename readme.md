@@ -251,4 +251,4 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 ## Icon
 
-<a href="https://thenounproject.com/term/equestrian/56632/" target="_blank">Equestrian</a> designed by <a href="https://thenounproject.com/gwyn751%40gmail.com/" target="_blank">Gwyn Lewis</a> from The Noun Project.
+[Equestrian](ttps://thenounproject.com/term/equestrian/56632/) designed by [Gwyn Lewis](https://thenounproject.com/gwyn751@gmail.com/) from [The Noun Project](https://thenounproject.com).
