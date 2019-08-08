@@ -1,6 +1,6 @@
-## The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg)](https://www.nuget.org/packages/SetStartupProjects/)
+## NuGet package
 
-https://nuget.org/packages/SetStartupProjects/
+https://nuget.org/packages/SetStartupProjects/ [![NuGet Status](http://img.shields.io/nuget/v/SetStartupProjects.svg)](https://www.nuget.org/packages/SetStartupProjects/)
 
 
 ## Usage
@@ -8,7 +8,7 @@ https://nuget.org/packages/SetStartupProjects/
 
 ### Passing in explicit Guids
 
-The raw api makes no assumptions and takes an explicit list of project guids.
+The raw api makes no assumptions and takes an explicit list of project Guids.
 
 ```csharp
 var startupProjectGuids = new List<string>
