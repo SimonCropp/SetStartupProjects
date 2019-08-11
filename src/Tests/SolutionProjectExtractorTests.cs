@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using ObjectApproval;
 using SetStartupProjects;
 using Xunit;
 using Xunit.Abstractions;
