@@ -2,17 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
-    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ObjectApproval" Version="11.1.0" />
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="16.4.0" PrivateAssets="all" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="XunitLogger" Version="2.5.0" />
     <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.19" PrivateAssets="All" />
     <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
-  </ItemGroup>
-  <ItemGroup>
+
     <EmbeddedResource Include="WebApplication_websdk.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
