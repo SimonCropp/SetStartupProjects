@@ -36,7 +36,6 @@ Setting Visual Studio startup projects by hacking the suo
   * [Using the library on the Sample Solution](#using-the-library-on-the-sample-solution)
   * [Verifying the results](#verifying-the-results)
   * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)
-  * [Icon](#icon)
 <!-- endtoc -->
 
 
@@ -289,6 +288,11 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 ## Multiple versions of Visual Studio
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
+
+
+## Release Notes
+
+See [closed milestones](../../milestones?state=closed).
 
 
 ## Icon

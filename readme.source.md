@@ -258,6 +258,11 @@ Opening the Sample Solution you will note the startup projects have been changed
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
 
 
+## Release Notes
+
+See [closed milestones](../../milestones?state=closed).
+
+
 ## Icon
 
 [Equestrian](ttps://thenounproject.com/term/equestrian/56632/) designed by [Gwyn Lewis](https://thenounproject.com/gwyn751@gmail.com/) from [The Noun Project](https://thenounproject.com).
