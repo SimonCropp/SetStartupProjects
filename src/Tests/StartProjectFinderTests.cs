@@ -6,7 +6,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 public class StartProjectFinderTests :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     [Fact]
     public void Exe_from_OutputType()

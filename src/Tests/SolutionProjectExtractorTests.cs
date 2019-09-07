@@ -4,7 +4,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 public class SolutionProjectExtractorTests :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     [Fact]
     public void GetAllProjectFiles()
