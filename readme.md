@@ -138,7 +138,7 @@ Set the start-up projects to be `ConsoleApplication1` and `ConsoleApplication2`.
 
 Opening the `.suo` for this solution in Structured Storage Explorer and navigating to the `SolutionConfiguration` Stream will show
 
-![](Images/structuredstorageexplorer.png)
+![](src/Images/structuredstorageexplorer.png)
 
 You will note the text contains the project GUIDs mentioned above.
 
@@ -184,7 +184,7 @@ using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnl
 
 Opening `temp.txt` in [Sublime Text](http://www.sublimetext.com/) will reveal this (new lines added after `;` characters for clarity)
 
-![](Images/textoutput.png)
+![](src/Images/textoutput.png)
 
 Note the existence of [control characters](http://en.wikipedia.org/wiki/Control_character#In_ASCII) explains why both the MCDF explorer and Visual Studio had trouble rendering them.
 
@@ -196,12 +196,12 @@ There are several other settings stored in the configuration stream. The importa
 
 ### The key indicating the start of the multiple startup section:
 
-![](Images/enablemultistart.png)
+![](src/Images/enablemultistart.png)
 
 
 ### Defining each project that should be part of the multiple start:
 
-![](Images/startprojectformat.png)
+![](src/Images/startprojectformat.png)
 
 
 ### Redundant information
@@ -213,7 +213,7 @@ The rest are configuration options and [miscellaneous project files](https://msd
 
 For the sample solutions project GUIDs the minimum that needs to be written back to that stream is:
 
-![](Images/desiredoutput.png)
+![](src/Images/desiredoutput.png)
 
 
 ## The suo template used
@@ -283,7 +283,7 @@ startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProj
 
 Opening the Sample Solution you will note the startup projects have been changed.
 
-![](Images/itworked.png)
+![](src/Images/itworked.png)
 
 
 ## Multiple versions of Visual Studio
