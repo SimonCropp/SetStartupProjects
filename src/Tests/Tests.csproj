@@ -8,9 +8,9 @@
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="16.5.0" PrivateAssets="All" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Xunit" Version="2.4.1" />
-    <PackageReference Include="XunitLogger" Version="3.1.0" />
-    <PackageReference Include="Xunit.ApprovalTests" Version="3.1.0" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.25" PrivateAssets="All" />
+    <PackageReference Include="XunitLogger" Version="3.2.1" />
+    <PackageReference Include="Xunit.ApprovalTests" Version="3.2.1" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.26" PrivateAssets="All" />
     <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
 
     <EmbeddedResource Include="WebApplication_websdk.txt">
