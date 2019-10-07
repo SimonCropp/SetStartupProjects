@@ -29,11 +29,11 @@ namespace SetStartupProjects
                     continue;
                 }
                 yield return new Project
-                {
-                    FullPath = fullPath,
-                    RelativePath = strings[1],
-                    Guid = guid
-                };
+                (
+                    fullPath: fullPath,
+                    relativePath: strings[1],
+                    guid: guid
+                );
             }
         }
     }
