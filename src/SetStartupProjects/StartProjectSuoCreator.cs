@@ -29,7 +29,20 @@ namespace SetStartupProjects
             }
             var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
 
-            if ((visualStudioVersions & VisualStudioVersions.Vs2017) == VisualStudioVersions.Vs2017)
+            if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2019))
+            {
+                var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
+                var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v16");
+                Directory.CreateDirectory(suoDirectoryPath);
+                var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
+                File.Delete(suoFilePath);
+                using (var templateStream = Resource.AsStream("Solution2019.suotemplate"))
+                {
+                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+                }
+            }
+
+            if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2017))
             {
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v15");
@@ -42,7 +55,7 @@ namespace SetStartupProjects
                 }
             }
 
-            if ((visualStudioVersions & VisualStudioVersions.Vs2015) == VisualStudioVersions.Vs2015)
+            if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2015))
             {
                 var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
                 var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v14");
@@ -55,7 +68,7 @@ namespace SetStartupProjects
                 }
             }
 
-            if ((visualStudioVersions & VisualStudioVersions.Vs2013) == VisualStudioVersions.Vs2013)
+            if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2013))
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v12.suo");
                 File.Delete(suoFilePath);
@@ -65,7 +78,7 @@ namespace SetStartupProjects
                 }
             }
 
-            if ((visualStudioVersions & VisualStudioVersions.Vs2012) == VisualStudioVersions.Vs2012)
+            if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2012))
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v11.suo");
                 File.Delete(suoFilePath);

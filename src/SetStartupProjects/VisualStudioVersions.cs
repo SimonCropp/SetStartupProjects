@@ -25,8 +25,12 @@ namespace SetStartupProjects
         /// </summary>
         Vs2017 = 8,
         /// <summary>
+        /// Target suo creation for Visual Studio 2019.
+        /// </summary>
+        Vs2019 = 16,
+        /// <summary>
         /// Target suo creation for Visual Studio versions 2012, 2013, 2015 and 2017.
         /// </summary>
-        All = Vs2012 | Vs2013 | Vs2015 | Vs2017,
+        All = Vs2012 | Vs2013 | Vs2015 | Vs2017 | Vs2019,
     }
 }
