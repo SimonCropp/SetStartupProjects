@@ -13,6 +13,7 @@
     <EmbeddedResource Include="Solution2013.suotemplate" />
     <EmbeddedResource Include="Solution2015.suotemplate" />
     <EmbeddedResource Include="Solution2017.suotemplate" />
+    <EmbeddedResource Include="Solution2019.suotemplate" />
     <PackageReference Condition="$(Configuration) == 'Release'" Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19554-01" PrivateAssets="All" />
     <PackageReference Include="OpenMcdf" Version="2.2.1.3" />
   </ItemGroup>
