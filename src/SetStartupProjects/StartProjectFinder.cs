@@ -96,11 +96,10 @@ namespace SetStartupProjects
                 {
                     return true;
                 }
-                using (var reader = File.OpenText(projectFile))
-                {
-                    var xDocument = XDocument.Load(reader);
-                    return ShouldIncludeProjectXml(xDocument, projectFile);
-                }
+
+                using var reader = File.OpenText(projectFile);
+                var xDocument = XDocument.Load(reader);
+                return ShouldIncludeProjectXml(xDocument, projectFile);
             }
             catch (Exception exception)
             {

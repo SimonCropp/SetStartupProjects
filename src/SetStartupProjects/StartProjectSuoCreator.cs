@@ -36,10 +36,8 @@ namespace SetStartupProjects
                 Directory.CreateDirectory(suoDirectoryPath);
                 var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
                 File.Delete(suoFilePath);
-                using (var templateStream = Resource.AsStream("Solution2019.suotemplate"))
-                {
-                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-                }
+                using var templateStream = Resource.AsStream("Solution2019.suotemplate");
+                WriteToStream(suoFilePath, startupProjectGuids, templateStream);
             }
 
             if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2017))
@@ -49,10 +47,8 @@ namespace SetStartupProjects
                 Directory.CreateDirectory(suoDirectoryPath);
                 var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
                 File.Delete(suoFilePath);
-                using (var templateStream = Resource.AsStream("Solution2017.suotemplate"))
-                {
-                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-                }
+                using var templateStream = Resource.AsStream("Solution2017.suotemplate");
+                WriteToStream(suoFilePath, startupProjectGuids, templateStream);
             }
 
             if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2015))
@@ -62,30 +58,24 @@ namespace SetStartupProjects
                 Directory.CreateDirectory(suoDirectoryPath);
                 var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
                 File.Delete(suoFilePath);
-                using (var templateStream = Resource.AsStream("Solution2015.suotemplate"))
-                {
-                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-                }
+                using var templateStream = Resource.AsStream("Solution2015.suotemplate");
+                WriteToStream(suoFilePath, startupProjectGuids, templateStream);
             }
 
             if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2013))
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v12.suo");
                 File.Delete(suoFilePath);
-                using (var templateStream = Resource.AsStream("Solution2013.suotemplate"))
-                {
-                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-                }
+                using var templateStream = Resource.AsStream("Solution2013.suotemplate");
+                WriteToStream(suoFilePath, startupProjectGuids, templateStream);
             }
 
             if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2012))
             {
                 var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v11.suo");
                 File.Delete(suoFilePath);
-                using (var templateStream = Resource.AsStream("Solution2012.suotemplate"))
-                {
-                    WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-                }
+                using var templateStream = Resource.AsStream("Solution2012.suotemplate");
+                WriteToStream(suoFilePath, startupProjectGuids, templateStream);
             }
         }
 
@@ -93,14 +83,12 @@ namespace SetStartupProjects
         {
             try
             {
-                using (var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
-                {
-                    compoundFile.RootStorage.Delete("SolutionConfiguration");
-                    var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
+                using var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
+                compoundFile.RootStorage.Delete("SolutionConfiguration");
+                var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
 
-                    SetSolutionConfigValue(solutionConfiguration, startupProjectGuids);
-                    compoundFile.Save(suoFilePath);
-                }
+                SetSolutionConfigValue(solutionConfiguration, startupProjectGuids);
+                compoundFile.Save(suoFilePath);
             }
             catch (Exception exception)
             {

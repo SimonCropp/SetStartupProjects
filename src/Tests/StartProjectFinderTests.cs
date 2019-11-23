@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Xml.Linq;
 using SetStartupProjects;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class StartProjectFinderTests :
-    XunitApprovalBase
+    VerifyBase
 {
     [Fact]
     public void Exe_from_OutputType()

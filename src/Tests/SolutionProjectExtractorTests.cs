@@ -1,16 +1,17 @@
-﻿using System.IO;
+﻿using System.Threading.Tasks;
 using SetStartupProjects;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class SolutionProjectExtractorTests :
-    XunitApprovalBase
+    VerifyBase
 {
     [Fact]
-    public void GetAllProjectFiles()
+    public Task GetAllProjectFiles()
     {
         var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles("SampleSolution.txt");
-        ObjectApprover.Verify(allProjectFiles, s => s.Replace(@"\\", @"\").Replace(Directory.GetCurrentDirectory(), ""));
+        return Verify(allProjectFiles);
     }
 
     public SolutionProjectExtractorTests(ITestOutputHelper output) :
