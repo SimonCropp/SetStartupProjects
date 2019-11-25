@@ -4,7 +4,7 @@
     <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="XunitContext" Version="1.0.0" />
+    <PackageReference Include="XunitContext" Version="1.5.1" />
     <PackageReference Include="Verify.Xunit" Version="1.0.0-beta.7" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.0.0" PrivateAssets="All" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
