@@ -1,7 +1,7 @@
 # <img src="/src/icon.png" height="30px"> SetStartupProjects
 
 [![Build status](https://ci.appveyor.com/api/projects/status/aqarlqoac6n3w6qd/branch/master?svg=true)](https://ci.appveyor.com/project/SimonCropp/SetStartupProjects)
-[![NuGet Status](https://img.shields.io/nuget/v/SetStartupProjects.svg?cacheSeconds=86400)](https://www.nuget.org/packages/SetStartupProjects/)
+[![NuGet Status](https://img.shields.io/nuget/v/SetStartupProjects.svg)](https://www.nuget.org/packages/SetStartupProjects/)
 
 Setting Visual Studio startup projects by hacking the suo
 
