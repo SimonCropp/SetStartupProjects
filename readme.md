@@ -15,7 +15,6 @@ Setting Visual Studio startup projects by hacking the suo
 <!-- toc -->
 ## Contents
 
-  * [NuGet package](#nuget-package)
   * [Usage](#usage)
     * [Passing in explicit Guids](#passing-in-explicit-guids)
     * [Use the build in convention](#use-the-build-in-convention)
@@ -35,9 +34,7 @@ Setting Visual Studio startup projects by hacking the suo
   * [The MultiStartupProj writing code](#the-multistartupproj-writing-code)
   * [Using the library on the Sample Solution](#using-the-library-on-the-sample-solution)
   * [Verifying the results](#verifying-the-results)
-  * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)
-<!-- endtoc -->
-
+  * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)<!-- endtoc -->
 
 
 ## NuGet package
