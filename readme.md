@@ -34,7 +34,8 @@ Setting Visual Studio startup projects by hacking the suo
   * [The MultiStartupProj writing code](#the-multistartupproj-writing-code)
   * [Using the library on the Sample Solution](#using-the-library-on-the-sample-solution)
   * [Verifying the results](#verifying-the-results)
-  * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)<!-- endtoc -->
+  * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)
+  * [Security contact information](#security-contact-information)<!-- endtoc -->
 
 
 ## NuGet package
@@ -286,6 +287,11 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 ## Multiple versions of Visual Studio
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
+
+
+## Security contact information
+
+To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Release Notes

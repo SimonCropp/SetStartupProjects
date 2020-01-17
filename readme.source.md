@@ -259,6 +259,11 @@ Opening the Sample Solution you will note the startup projects have been changed
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
 
 
+## Security contact information
+
+To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
+
+
 ## Release Notes
 
 See [closed milestones](../../milestones?state=closed).
