@@ -5,6 +5,8 @@
 
 Setting Visual Studio startup projects by hacking the suo
 
+Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-setstartupprojects?utm_source=nuget-setstartupprojects&utm_medium=referral&utm_campaign=enterprise).
+
 toc
 
 
