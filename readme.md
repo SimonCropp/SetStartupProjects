@@ -12,6 +12,8 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Setting Visual Studio startup projects by hacking the suo
 
+Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-setstartupprojects?utm_source=nuget-setstartupprojects&utm_medium=referral&utm_campaign=enterprise).
+
 <!-- toc -->
 ## Contents
 
