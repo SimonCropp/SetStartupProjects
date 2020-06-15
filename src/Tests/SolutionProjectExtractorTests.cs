@@ -2,20 +2,14 @@
 using SetStartupProjects;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class SolutionProjectExtractorTests :
-    VerifyBase
+[UsesVerify]
+public class SolutionProjectExtractorTests
 {
     [Fact]
     public Task GetAllProjectFiles()
     {
         var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles("SampleSolution.txt");
-        return Verify(allProjectFiles);
-    }
-
-    public SolutionProjectExtractorTests(ITestOutputHelper output) :
-        base(output)
-    {
+        return Verifier.Verify(allProjectFiles);
     }
 }
