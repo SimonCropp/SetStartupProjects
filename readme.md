@@ -37,7 +37,7 @@ Support is available via a [Tidelift Subscription](https://tidelift.com/subscrip
   * [Using the library on the Sample Solution](#using-the-library-on-the-sample-solution)
   * [Verifying the results](#verifying-the-results)
   * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)
-  * [Security contact information](#security-contact-information)<!-- endtoc -->
+  * [Security contact information](#security-contact-information)<!-- endToc -->
 
 
 ## NuGet package
