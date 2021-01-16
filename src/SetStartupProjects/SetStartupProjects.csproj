@@ -8,7 +8,7 @@
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ProjectDefaults" Version="1.0.52" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.53" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <EmbeddedResource Include="Solution2012.suotemplate" />
     <EmbeddedResource Include="Solution2013.suotemplate" />
