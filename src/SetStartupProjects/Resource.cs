@@ -7,6 +7,6 @@ static class Resource
 
     public static Stream AsStream(string name)
     {
-        return assembly.GetManifestResourceStream($"SetStartupProjects.{name}");
+        return assembly.GetManifestResourceStream($"SetStartupProjects.{name}")!;
     }
 }

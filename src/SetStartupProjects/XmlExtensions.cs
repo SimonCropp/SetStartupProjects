@@ -10,6 +10,7 @@ static class XmlExtensions
         {
             return;
         }
+
         foreach (var element in document.Root.DescendantsAndSelf())
         {
             element.Name = element.Name.LocalName;

@@ -131,7 +131,7 @@ namespace SetStartupProjects
             {
                 return true;
             }
-            var xElement = xDocument.Root;
+            var xElement = xDocument.Root!;
             var propertyGroups = xElement
                 .Elements("PropertyGroup");
             foreach (var propertyGroup in propertyGroups)
@@ -156,7 +156,7 @@ namespace SetStartupProjects
 
         bool ShouldIncludeForWebSdk(XDocument document)
         {
-            var attribute = document.Root.Attribute("Sdk");
+            var attribute = document.Root!.Attribute("Sdk");
             if (attribute == null)
             {
                 return false;
@@ -194,7 +194,7 @@ namespace SetStartupProjects
             return false;
         }
 
-        static List<string> DefaultIncludedGuids = new List<string>
+        static List<string> DefaultIncludedGuids = new()
         {
             "603C0E0B-DB56-11DC-BE95-000D561079B0", //ASP.NET MVC 1.0
             "F85E285D-A4E0-4152-9332-AB1D724D3325", //ASP.NET MVC 2.0

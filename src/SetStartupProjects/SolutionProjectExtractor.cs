@@ -28,7 +28,7 @@ namespace SetStartupProjects
                     //this is a Solution Folder	and can be ignored
                     continue;
                 }
-                yield return new Project
+                yield return new
                 (
                     fullPath: fullPath,
                     relativePath: strings[1],

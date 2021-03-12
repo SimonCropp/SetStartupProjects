@@ -27,6 +27,7 @@ namespace SetStartupProjects
             {
                 throw new ArgumentOutOfRangeException(nameof(startupProjectGuids), $"For solutionFilePath: '{solutionFilePath}'");
             }
+
             var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
 
             if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2019))
@@ -83,7 +84,7 @@ namespace SetStartupProjects
         {
             try
             {
-                using var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
+                using CompoundFile compoundFile = new(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
                 compoundFile.RootStorage.Delete("SolutionConfiguration");
                 var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
 
@@ -100,7 +101,8 @@ namespace SetStartupProjects
 
         static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startupProjectGuids)
         {
-            var single = Encoding.GetEncodings().Single(x => string.Equals(x.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
+            var single = Encoding.GetEncodings()
+                .Single(x => string.Equals(x.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
             var encoding = single.GetEncoding();
             var nul = '\u0000';
             var dc1 = '\u0011';
@@ -133,6 +135,5 @@ namespace SetStartupProjects
             var newBytes = encoding.GetBytes(builder.ToString());
             cfStream.SetData(newBytes);
         }
-
     }
 }

@@ -53,12 +53,12 @@ https://nuget.org/packages/SetStartupProjects/
 The raw api makes no assumptions and takes an explicit list of project Guids.
 
 ```csharp
-var startupProjectGuids = new List<string>
+List<string> startupProjectGuids = new()
 {
     "11111111-1111-1111-1111-111111111111",
     "22222222-2222-2222-2222-222222222222"
 };
-var startProjectSuoCreator = new StartProjectSuoCreator();
+StartProjectSuoCreator startProjectSuoCreator = new();
 startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids);
 ```
 
@@ -78,7 +78,7 @@ And then can be used as follows:
 var startupProjectGuids = new StartProjectFinder()
     .GetStartProjects(solutionFilePath)
     .ToList();
-var startProjectSuoCreator = new StartProjectSuoCreator();
+StartProjectSuoCreator startProjectSuoCreator = new();
 startProjectSuoCreator.CreateForSolutionFile(solutionFilePath, startupProjectGuids);
 ```
 
@@ -155,7 +155,7 @@ var utf16 = Encoding.GetEncodings()
     .Single(x => x.Name == "utf-16")
     .GetEncoding();
 using (var solutionStream = File.OpenRead(suoPath))
-using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
+using (CompoundFile compoundFile = new(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
 {
     var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
     var bytes = configStream.GetData();
@@ -171,7 +171,7 @@ Note that Visual Studio has trouble rendering the characters. If you instead sav
 
 ```csharp
 using (var solutionStream = File.OpenRead(suoPath))
-using (var compoundFile = new CompoundFile(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
+using (CompoundFile compoundFile = new(solutionStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors))
 {
     var configStream = compoundFile.RootStorage.GetStream("SolutionConfiguration");
     var bytes = configStream.GetData();
@@ -270,12 +270,12 @@ static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startu
 Using the SetStartupProjects nuget the startup projects for the Sample Solution can be written back using the following:
 
 ```csharp
-var startupProjectGuids =new List<string>
+List<string> startupProjectGuids = new()
 {
     "11111111-1111-1111-1111-111111111111",
     "22222222-2222-2222-2222-222222222222"
 };
-var startProjectSuoCreator = new StartProjectSuoCreator();
+StartProjectSuoCreator startProjectSuoCreator = new();
 startProjectSuoCreator.CreateForSolutionDirectory(solutionDirectory, startupProjectGuids);
 ```
 
