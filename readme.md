@@ -12,33 +12,6 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Setting Visual Studio startup projects by hacking the suo
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-setstartupprojects?utm_source=nuget-setstartupprojects&utm_medium=referral&utm_campaign=enterprise).
-
-<!-- toc -->
-## Contents
-
-  * [Usage](#usage)
-    * [Passing in explicit Guids](#passing-in-explicit-guids)
-    * [Use the build in convention](#use-the-build-in-convention)
-  * [Justification](#justification)
-    * [Why not commit the SUO to source control](#why-not-commit-the-suo-to-source-control)
-  * [Surely this is a solved problem](#surely-this-is-a-solved-problem)
-  * [The underlying format of an suo](#the-underlying-format-of-an-suo)
-  * [OpenMCDF](#openmcdf)
-  * [The underlying suo structure](#the-underlying-suo-structure)
-  * [The Encoding of the `SolutionConfiguration` Stream](#the-encoding-of-the-solutionconfiguration-stream)
-  * [Dissecting the contents](#dissecting-the-contents)
-    * [The key indicating the start of the multiple startup section:](#the-key-indicating-the-start-of-the-multiple-startup-section)
-    * [Defining each project that should be part of the multiple start:](#defining-each-project-that-should-be-part-of-the-multiple-start)
-    * [Redundant information](#redundant-information)
-  * [Minimum settings to write back](#minimum-settings-to-write-back)
-  * [The suo template used](#the-suo-template-used)
-  * [The MultiStartupProj writing code](#the-multistartupproj-writing-code)
-  * [Using the library on the Sample Solution](#using-the-library-on-the-sample-solution)
-  * [Verifying the results](#verifying-the-results)
-  * [Multiple versions of Visual Studio](#multiple-versions-of-visual-studio)
-  * [Security contact information](#security-contact-information)<!-- endToc -->
-
 
 ## NuGet package
 
@@ -289,11 +262,6 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 ## Multiple versions of Visual Studio
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
-
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
