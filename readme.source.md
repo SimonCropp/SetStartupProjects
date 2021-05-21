@@ -5,10 +5,6 @@
 
 Setting Visual Studio startup projects by hacking the suo
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-setstartupprojects?utm_source=nuget-setstartupprojects&utm_medium=referral&utm_campaign=enterprise).
-
-toc
-
 
 ## NuGet package
 
@@ -259,11 +255,6 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 ## Multiple versions of Visual Studio
 `StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
-
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
