@@ -21,7 +21,6 @@ namespace SetStartupProjects
         public void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
         {
             Guard.AgainstNullAndEmpty(solutionFilePath, nameof(solutionFilePath));
-            Guard.AgainstNull(startupProjectGuids, nameof(startupProjectGuids));
             Guard.AgainstNonExistingFile(solutionFilePath, nameof(solutionFilePath));
             if (startupProjectGuids.Count == 0)
             {

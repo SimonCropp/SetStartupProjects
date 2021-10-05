@@ -10,11 +10,7 @@
   <ItemGroup>
     <PackageReference Include="ProjectDefaults" Version="1.0.58" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
-    <EmbeddedResource Include="Solution2012.suotemplate" />
-    <EmbeddedResource Include="Solution2013.suotemplate" />
-    <EmbeddedResource Include="Solution2015.suotemplate" />
-    <EmbeddedResource Include="Solution2017.suotemplate" />
-    <EmbeddedResource Include="Solution2019.suotemplate" />
+    <EmbeddedResource Include="*.suotemplate" />
     <PackageReference Condition="$(Configuration) == 'Release'" Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="OpenMcdf" Version="2.2.1.9" />
   </ItemGroup>
