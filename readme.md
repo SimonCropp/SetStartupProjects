@@ -261,7 +261,7 @@ Opening the Sample Solution you will note the startup projects have been changed
 
 
 ## Multiple versions of Visual Studio
-`StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015 and 2017.
+`StartProjectSuoCreator` writes `.suo` files for Visual Studio 2012, 2013, 2015, 2017 and 2022.
 
 
 ## Icon
