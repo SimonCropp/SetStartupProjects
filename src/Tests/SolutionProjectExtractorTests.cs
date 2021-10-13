@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using SetStartupProjects;
+﻿using SetStartupProjects;
 using VerifyXunit;
 using Xunit;
 

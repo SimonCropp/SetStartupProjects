@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
-
-static class Resource
+﻿static class Resource
 {
     static Assembly assembly = typeof(Resource).Assembly;
 

@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-
 // ReSharper disable UnusedParameter.Global
 
 static class Guard
