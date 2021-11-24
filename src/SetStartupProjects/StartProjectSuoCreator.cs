@@ -24,6 +24,17 @@ public class StartProjectSuoCreator
 
         var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
 
+        if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2022))
+        {
+            var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
+            var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v17");
+            Directory.CreateDirectory(suoDirectoryPath);
+            var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
+            File.Delete(suoFilePath);
+            using var templateStream = Resource.AsStream("Solution2022.suotemplate");
+            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+        }
+
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2019))
         {
             var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
