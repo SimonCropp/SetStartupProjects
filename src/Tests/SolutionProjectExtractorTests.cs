@@ -9,6 +9,6 @@ public class SolutionProjectExtractorTests
     public Task GetAllProjectFiles()
     {
         var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles("SampleSolution.txt");
-        return Verifier.Verify(allProjectFiles);
+        return Verify(allProjectFiles);
     }
 }
