@@ -22,7 +22,7 @@ public class StartProjectSuoCreator
             throw new ArgumentOutOfRangeException(nameof(startupProjectGuids), $"For solutionFilePath: '{solutionFilePath}'");
         }
 
-        var solutionDirectory = Path.GetDirectoryName(solutionFilePath);
+        var solutionDirectory = Path.GetDirectoryName(solutionFilePath)!;
 
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2022))
         {
@@ -100,7 +100,7 @@ public class StartProjectSuoCreator
         {
             var joinedGuids = string.Join(" ", startupProjectGuids);
             var message = $"Could not create .suo file for '{suoFilePath}'. Guids: {joinedGuids}";
-            throw new Exception(message, exception);
+            throw new(message, exception);
         }
     }
 

@@ -1,6 +1,4 @@
 ﻿using SetStartupProjects;
-using VerifyXunit;
-using Xunit;
 
 [UsesVerify]
 public class SolutionProjectExtractorTests

@@ -2,8 +2,6 @@
 {
     static Assembly assembly = typeof(Resource).Assembly;
 
-    public static Stream AsStream(string name)
-    {
-        return assembly.GetManifestResourceStream($"SetStartupProjects.{name}")!;
-    }
+    public static Stream AsStream(string name) =>
+        assembly.GetManifestResourceStream($"SetStartupProjects.{name}")!;
 }

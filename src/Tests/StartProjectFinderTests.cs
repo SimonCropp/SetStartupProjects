@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
 using SetStartupProjects;
-using Xunit;
 
 public class StartProjectFinderTests
 {

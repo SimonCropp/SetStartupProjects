@@ -8,7 +8,7 @@ public static class SolutionProjectExtractor
     public static IEnumerable<Project> GetAllProjectFiles(string solutionFile)
     {
         Guard.AgainstNullAndEmpty(solutionFile, nameof(solutionFile));
-        var solutionDirectory = Path.GetDirectoryName(solutionFile);
+        var solutionDirectory = Path.GetDirectoryName(solutionFile)!;
         foreach (var line in File.ReadAllLines(solutionFile))
         {
             if (!line.StartsWith("Project("))

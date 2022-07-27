@@ -16,10 +16,8 @@ static class XmlExtensions
         }
     }
 
-    static IEnumerable GetAttributes(XElement xElement)
-    {
-        return xElement.Attributes()
+    static IEnumerable GetAttributes(XElement xElement) =>
+        xElement.Attributes()
             .Where(x => !x.IsNamespaceDeclaration)
             .Select(x => new XAttribute(x.Name.LocalName, x.Value));
-    }
 }

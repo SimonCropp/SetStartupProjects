@@ -41,12 +41,10 @@ namespace SetStartupProjects;
 /// </summary>
 public class StartProjectFinder
 {
-    IEnumerable<string> GuessStartupProjects(string solutionFile)
-    {
-        return from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
-            where ShouldIncludeProjectFile(project)
-            select project.Guid;
-    }
+    IEnumerable<string> GuessStartupProjects(string solutionFile) =>
+        from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
+        where ShouldIncludeProjectFile(project)
+        select project.Guid;
 
     /// <summary>
     /// Get the startup projects by looking at the projects contained in <paramref name="solutionFile"/>.
@@ -57,7 +55,7 @@ public class StartProjectFinder
         Guard.AgainstNonExistingFile(solutionFile, nameof(solutionFile));
 
         var nameWithoutExtension = Path.GetFileNameWithoutExtension(solutionFile);
-        var solutionDirectory = Path.GetDirectoryName(solutionFile);
+        var solutionDirectory = Path.GetDirectoryName(solutionFile)!;
         var defaultProjectsTextFile = Path.Combine(solutionDirectory, $"{nameWithoutExtension}.StartupProjects.txt");
         if (!File.Exists(defaultProjectsTextFile))
         {
@@ -65,8 +63,10 @@ public class StartProjectFinder
             {
                 yield return startProject;
             }
+
             yield break;
         }
+
         var allPossibleProjects = SolutionProjectExtractor.GetAllProjectFiles(solutionFile).ToList();
         var defaultProjects = File.ReadAllLines(defaultProjectsTextFile)
             .Where(x => !string.IsNullOrWhiteSpace(x));
@@ -76,8 +76,9 @@ public class StartProjectFinder
             if (project == null)
             {
                 var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
-                throw new Exception(error);
+                throw new(error);
             }
+
             yield return project.Guid;
         }
     }
@@ -99,19 +100,17 @@ public class StartProjectFinder
         }
         catch (Exception exception)
         {
-            throw new Exception($"Failed {nameof(ShouldIncludeProjectFile)}: {projectFile}", exception);
+            throw new($"Failed {nameof(ShouldIncludeProjectFile)}: {projectFile}", exception);
         }
     }
 
-    bool ShouldIncludeForFileExtension(string extension)
-    {
-        return extension == ".ccproj" ||
-               extension == ".sfproj";
-    }
+    static bool ShouldIncludeForFileExtension(string extension) =>
+        extension == ".ccproj" ||
+        extension == ".sfproj";
 
     protected internal bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
     {
-        var directoryName = Path.GetDirectoryName(projectFile);
+        var directoryName = Path.GetDirectoryName(projectFile)!;
         var netCoreLaunchSettingsFile = Path.Combine(directoryName, "Properties", "launchSettings.json");
         if (File.Exists(netCoreLaunchSettingsFile))
         {
@@ -123,10 +122,12 @@ public class StartProjectFinder
         {
             return true;
         }
+
         if (ShouldIncludeForWebSdk(xDocument))
         {
             return true;
         }
+
         var xElement = xDocument.Root!;
         var propertyGroups = xElement
             .Elements("PropertyGroup");
@@ -136,31 +137,32 @@ public class StartProjectFinder
             {
                 return true;
             }
+
             if (ShouldIncludeFromProjectTypeGuids(propertyGroup))
             {
                 return true;
             }
         }
+
         return false;
     }
 
-    bool ShouldIncludeForStartAction(XDocument document)
-    {
-        return document.Descendants("StartAction")
+    static bool ShouldIncludeForStartAction(XDocument document) =>
+        document.Descendants("StartAction")
             .Any(x => x.Value == "Program");
-    }
 
-    bool ShouldIncludeForWebSdk(XDocument document)
+    static bool ShouldIncludeForWebSdk(XDocument document)
     {
         var attribute = document.Root!.Attribute("Sdk");
         if (attribute == null)
         {
             return false;
         }
-        return attribute.Value== "Microsoft.NET.Sdk.Web";
+
+        return attribute.Value == "Microsoft.NET.Sdk.Web";
     }
 
-    bool ShouldIncludeForOutputType(XElement propertyGroup)
+    static bool ShouldIncludeForOutputType(XElement propertyGroup)
     {
         var xElement = propertyGroup.Element("OutputType");
         // OutputType can be null for xprojs
@@ -175,10 +177,11 @@ public class StartProjectFinder
                 return true;
             }
         }
+
         return false;
     }
 
-    bool ShouldIncludeFromProjectTypeGuids(XElement propertyGroup)
+    static bool ShouldIncludeFromProjectTypeGuids(XElement propertyGroup)
     {
         var projectTypes = propertyGroup.Element("ProjectTypeGuids");
         if (projectTypes != null)
@@ -187,6 +190,7 @@ public class StartProjectFinder
                 .Select(x => x.Trim('{', '}'))
                 .Any(typeGuid => DefaultIncludedGuids.Any(x => string.Equals(x, typeGuid, StringComparison.OrdinalIgnoreCase)));
         }
+
         return false;
     }
 
