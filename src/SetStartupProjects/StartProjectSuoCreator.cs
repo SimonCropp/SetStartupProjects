@@ -89,7 +89,7 @@ public class StartProjectSuoCreator
     {
         try
         {
-            using CompoundFile compoundFile = new(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
+            using var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
             compoundFile.RootStorage.Delete("SolutionConfiguration");
             var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
 

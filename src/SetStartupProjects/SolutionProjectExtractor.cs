@@ -24,8 +24,7 @@ public static class SolutionProjectExtractor
                 //this is a Solution Folder	and can be ignored
                 continue;
             }
-            yield return new
-            (
+            yield return new(
                 fullPath: fullPath,
                 relativePath: strings[1],
                 guid: guid
