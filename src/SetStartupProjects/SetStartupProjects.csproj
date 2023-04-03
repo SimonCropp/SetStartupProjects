@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
@@ -12,6 +12,6 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <EmbeddedResource Include="*.suotemplate" />
     <PackageReference Include="OpenMcdf" Version="2.2.1.12" />
-    <PackageReference Include="Polyfill" Version="1.8.0" PrivateAssets="all" />
+    <PackageReference Include="Polyfill" Version="1.10.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>
