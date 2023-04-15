@@ -98,7 +98,7 @@ public class StartProjectSuoCreator
         }
         catch (Exception exception)
         {
-            var joinedGuids = string.Join(' ', startupProjectGuids);
+            var joinedGuids = string.Join(" ", startupProjectGuids);
             var message = $"Could not create .suo file for '{suoFilePath}'. Guids: {joinedGuids}";
             throw new(message, exception);
         }
