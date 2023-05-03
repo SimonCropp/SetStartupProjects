@@ -94,7 +94,7 @@ public class StartProjectSuoCreator
             var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
 
             SetSolutionConfigValue(solutionConfiguration, startupProjectGuids);
-            compoundFile.Save(suoFilePath);
+            compoundFile.SaveAs(suoFilePath);
         }
         catch (Exception exception)
         {
