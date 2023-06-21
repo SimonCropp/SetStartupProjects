@@ -149,7 +149,7 @@ public class StartProjectFinder
 
     static bool ShouldIncludeForStartAction(XDocument document) =>
         document.Descendants("StartAction")
-            .Any(x => x.Value == "Program");
+            .Any(_ => _.Value == "Program");
 
     static bool ShouldIncludeForWebSdk(XDocument document)
     {
@@ -187,7 +187,7 @@ public class StartProjectFinder
         if (projectTypes != null)
         {
             return projectTypes.Value.Split(';')
-                .Select(x => x.Trim('{', '}'))
+                .Select(_ => _.Trim('{', '}'))
                 .Any(typeGuid => DefaultIncludedGuids.Any(x => string.Equals(x, typeGuid, StringComparison.OrdinalIgnoreCase)));
         }
 
