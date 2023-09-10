@@ -8,10 +8,10 @@
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ProjectDefaults" Version="1.0.93" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.94" PrivateAssets="all" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <EmbeddedResource Include="*.suotemplate" />
     <PackageReference Include="OpenMcdf" Version="2.3.0" />
-    <PackageReference Include="Polyfill" Version="1.27.1" PrivateAssets="all" />
+    <PackageReference Include="Polyfill" Version="1.27.2" PrivateAssets="all" />
   </ItemGroup>
 </Project>
