@@ -5,6 +5,8 @@
 
 Setting Visual Studio startup projects by hacking the suo
 
+**See [Milestones](../../milestones?state=closed) for release notes.**
+
 
 ## NuGet package
 
