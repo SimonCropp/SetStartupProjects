@@ -9,7 +9,7 @@
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="25.1.0" PrivateAssets="all" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" PrivateAssets="all" />
     <PackageReference Include="Xunit" Version="2.5.3" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.100" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.101" PrivateAssets="all" />
     <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
 
     <EmbeddedResource Include="WebApplication_websdk.txt">
