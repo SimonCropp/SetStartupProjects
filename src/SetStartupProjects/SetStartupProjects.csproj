@@ -12,6 +12,6 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <EmbeddedResource Include="*.suotemplate" />
     <PackageReference Include="OpenMcdf" Version="2.3.0" />
-    <PackageReference Include="Polyfill" Version="1.29.0" PrivateAssets="all" />
+    <PackageReference Include="Polyfill" Version="1.30.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>
