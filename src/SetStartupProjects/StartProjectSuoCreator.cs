@@ -107,7 +107,7 @@ public class StartProjectSuoCreator
     static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startupProjectGuids)
     {
         var single = Encoding.GetEncodings()
-            .Single(x => string.Equals(x.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
+            .Single(_ => string.Equals(_.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
         var encoding = single.GetEncoding();
         var nul = '\u0000';
         var dc1 = '\u0011';

@@ -69,10 +69,10 @@ public class StartProjectFinder
 
         var allPossibleProjects = SolutionProjectExtractor.GetAllProjectFiles(solutionFile).ToList();
         var defaultProjects = File.ReadAllLines(defaultProjectsTextFile)
-            .Where(x => !string.IsNullOrWhiteSpace(x));
+            .Where(_ => !string.IsNullOrWhiteSpace(_));
         foreach (var startupProject in defaultProjects)
         {
-            var project = allPossibleProjects.FirstOrDefault(x => string.Equals(x.RelativePath, startupProject, StringComparison.OrdinalIgnoreCase));
+            var project = allPossibleProjects.FirstOrDefault(_ => string.Equals(_.RelativePath, startupProject, StringComparison.OrdinalIgnoreCase));
             if (project == null)
             {
                 var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
@@ -188,7 +188,7 @@ public class StartProjectFinder
         {
             return projectTypes.Value.Split(';')
                 .Select(_ => _.Trim('{', '}'))
-                .Any(typeGuid => DefaultIncludedGuids.Any(x => string.Equals(x, typeGuid, StringComparison.OrdinalIgnoreCase)));
+                .Any(typeGuid => DefaultIncludedGuids.Any(_ => string.Equals(_, typeGuid, StringComparison.OrdinalIgnoreCase)));
         }
 
         return false;
