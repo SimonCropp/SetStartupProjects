@@ -1,6 +1,5 @@
 ﻿using SetStartupProjects;
 
-[UsesVerify]
 public class SolutionProjectExtractorTests
 {
     [Fact]
