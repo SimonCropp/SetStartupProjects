@@ -11,6 +11,6 @@
     <PackageReference Include="ProjectDefaults" Version="1.0.109" PrivateAssets="all" />
     <EmbeddedResource Include="*.suotemplate" />
     <PackageReference Include="OpenMcdf" Version="2.3.0" />
-    <PackageReference Include="Polyfill" Version="2.1.0" PrivateAssets="all" />
+    <PackageReference Include="Polyfill" Version="2.2.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>
