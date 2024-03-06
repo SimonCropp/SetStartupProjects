@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace SetStartupProjects;
+﻿namespace SetStartupProjects;
 
 /// <summary>
 ///  Helper class for extracting Visual Studio startup projects by looking at the projects contained in the solution directory and applying some conventions.
@@ -39,9 +37,9 @@ namespace SetStartupProjects;
 ///     </item>
 ///   </list>
 /// </summary>
-public class StartProjectFinder
+public static class StartProjectFinder
 {
-    IEnumerable<string> GuessStartupProjects(string solutionFile) =>
+    static IEnumerable<string> GuessStartupProjects(string solutionFile) =>
         from project in SolutionProjectExtractor.GetAllProjectFiles(solutionFile)
         where ShouldIncludeProjectFile(project)
         select project.Guid;
@@ -49,7 +47,7 @@ public class StartProjectFinder
     /// <summary>
     /// Get the startup projects by looking at the projects contained in <paramref name="solutionFile"/>.
     /// </summary>
-    public IEnumerable<string> GetStartProjects(string solutionFile)
+    public static IEnumerable<string> GetStartProjects(string solutionFile)
     {
         Guard.AgainstNullAndEmpty(solutionFile, nameof(solutionFile));
         Guard.AgainstNonExistingFile(solutionFile, nameof(solutionFile));
@@ -83,7 +81,7 @@ public class StartProjectFinder
         }
     }
 
-    bool ShouldIncludeProjectFile(Project project)
+    static bool ShouldIncludeProjectFile(Project project)
     {
         var projectFile = project.FullPath;
         Guard.AgainstNonExistingFile(projectFile, "Project");
@@ -108,7 +106,7 @@ public class StartProjectFinder
         extension == ".ccproj" ||
         extension == ".sfproj";
 
-    protected internal bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
+    internal static bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
     {
         var directoryName = Path.GetDirectoryName(projectFile)!;
         var netCoreLaunchSettingsFile = Path.Combine(directoryName, "Properties", "launchSettings.json");
@@ -194,13 +192,13 @@ public class StartProjectFinder
         return false;
     }
 
-    static List<string> DefaultIncludedGuids = new()
-    {
+    static List<string> DefaultIncludedGuids =
+    [
         "603C0E0B-DB56-11DC-BE95-000D561079B0", //ASP.NET MVC 1.0
         "F85E285D-A4E0-4152-9332-AB1D724D3325", //ASP.NET MVC 2.0
         "E53F8FEA-EAE0-44A6-8774-FFD645390401", //ASP.NET MVC 3.0
         "E3E379DF-F4C6-4180-9B81-6769533ABE47", //ASP.NET MVC 4.0
         "349C5851-65DF-11DA-9384-00065B846F21", //Web Application
-        "E24C65DC-7377-472B-9ABA-BC803B73C61A", //Web Site
-    };
+        "E24C65DC-7377-472B-9ABA-BC803B73C61A" //Web Site
+    ];
 }

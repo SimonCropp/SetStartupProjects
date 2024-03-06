@@ -1,11 +1,9 @@
-﻿using OpenMcdf;
-
-namespace SetStartupProjects;
+﻿namespace SetStartupProjects;
 
 /// <summary>
 /// Creates suo files that contain startup projects.
 /// </summary>
-public class StartProjectSuoCreator
+public static class StartProjectSuoCreator
 {
     /// <summary>
     /// Create suo startup files for a specific solution file.
@@ -13,7 +11,7 @@ public class StartProjectSuoCreator
     /// <remarks>
     /// All existing suo files will be overwritten.
     /// </remarks>
-    public void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
+    public static void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
     {
         Guard.AgainstNullAndEmpty(solutionFilePath, nameof(solutionFilePath));
         Guard.AgainstNonExistingFile(solutionFilePath, nameof(solutionFilePath));

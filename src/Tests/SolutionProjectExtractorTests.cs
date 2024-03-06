@@ -1,6 +1,4 @@
-﻿using SetStartupProjects;
-
-public class SolutionProjectExtractorTests
+﻿public class SolutionProjectExtractorTests
 {
     [Fact]
     public Task GetAllProjectFiles()
