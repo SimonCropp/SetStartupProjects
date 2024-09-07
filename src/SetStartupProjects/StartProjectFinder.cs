@@ -93,8 +93,8 @@ public static class StartProjectFinder
             }
 
             using var reader = File.OpenText(projectFile);
-            var xDocument = XDocument.Load(reader);
-            return ShouldIncludeProjectXml(xDocument, projectFile);
+            var document = XDocument.Load(reader);
+            return ShouldIncludeProjectXml(document, projectFile);
         }
         catch (Exception exception)
         {
@@ -103,8 +103,7 @@ public static class StartProjectFinder
     }
 
     static bool ShouldIncludeForFileExtension(string extension) =>
-        extension == ".ccproj" ||
-        extension == ".sfproj";
+        extension is ".ccproj" or ".sfproj";
 
     internal static bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
     {
@@ -186,13 +185,13 @@ public static class StartProjectFinder
         {
             return projectTypes.Value.Split(';')
                 .Select(_ => _.Trim('{', '}'))
-                .Any(typeGuid => DefaultIncludedGuids.Any(_ => string.Equals(_, typeGuid, StringComparison.OrdinalIgnoreCase)));
+                .Any(typeGuid => defaultIncludedGuids.Any(_ => string.Equals(_, typeGuid, StringComparison.OrdinalIgnoreCase)));
         }
 
         return false;
     }
 
-    static List<string> DefaultIncludedGuids =
+    static List<string> defaultIncludedGuids =
     [
         "603C0E0B-DB56-11DC-BE95-000D561079B0", //ASP.NET MVC 1.0
         "F85E285D-A4E0-4152-9332-AB1D724D3325", //ASP.NET MVC 2.0

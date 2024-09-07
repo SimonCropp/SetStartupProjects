@@ -107,10 +107,10 @@ public static class StartProjectSuoCreator
         var single = Encoding.GetEncodings()
             .Single(_ => string.Equals(_.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
         var encoding = single.GetEncoding();
-        var nul = '\u0000';
-        var dc1 = '\u0011';
-        var etx = '\u0003';
-        var soh = '\u0001';
+        const char nul = '\u0000';
+        const char dc1 = '\u0011';
+        const char etx = '\u0003';
+        const char soh = '\u0001';
 
         var builder = new StringBuilder();
         builder.Append(dc1);

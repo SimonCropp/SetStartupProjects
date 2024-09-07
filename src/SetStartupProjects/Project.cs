@@ -1,15 +1,8 @@
 ﻿namespace SetStartupProjects;
 
-public class Project
+public class Project(string fullPath, string relativePath, string guid)
 {
-    public Project(string fullPath, string relativePath, string guid)
-    {
-        FullPath = fullPath;
-        RelativePath = relativePath;
-        Guid = guid;
-    }
-
-    public readonly string Guid;
-    public readonly string RelativePath;
-    public readonly string FullPath;
+    public readonly string Guid = guid;
+    public readonly string RelativePath = relativePath;
+    public readonly string FullPath = fullPath;
 }

@@ -14,8 +14,8 @@
         }
     }
 
-    static IEnumerable GetAttributes(XElement xElement) =>
-        xElement.Attributes()
+    static IEnumerable GetAttributes(XElement element) =>
+        element.Attributes()
             .Where(_ => !_.IsNamespaceDeclaration)
             .Select(_ => new XAttribute(_.Name.LocalName, _.Value));
 }
