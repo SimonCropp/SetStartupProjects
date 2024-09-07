@@ -105,7 +105,7 @@ public static class StartProjectFinder
     static bool ShouldIncludeForFileExtension(string extension) =>
         extension is ".ccproj" or ".sfproj";
 
-    internal static bool ShouldIncludeProjectXml(XDocument xDocument, string projectFile)
+    internal static bool ShouldIncludeProjectXml(XDocument document, string projectFile)
     {
         var directoryName = Path.GetDirectoryName(projectFile)!;
         var netCoreLaunchSettingsFile = Path.Combine(directoryName, "Properties", "launchSettings.json");
@@ -114,19 +114,19 @@ public static class StartProjectFinder
             return true;
         }
 
-        xDocument.StripNamespace();
-        if (ShouldIncludeForStartAction(xDocument))
+        document.StripNamespace();
+        if (ShouldIncludeForStartAction(document))
         {
             return true;
         }
 
-        if (ShouldIncludeForWebSdk(xDocument))
+        if (ShouldIncludeForWebSdk(document))
         {
             return true;
         }
 
-        var xElement = xDocument.Root!;
-        var propertyGroups = xElement
+        var element = document.Root!;
+        var propertyGroups = element
             .Elements("PropertyGroup");
         foreach (var propertyGroup in propertyGroups)
         {
