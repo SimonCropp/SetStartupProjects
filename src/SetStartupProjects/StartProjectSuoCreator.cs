@@ -22,9 +22,9 @@ public static class StartProjectSuoCreator
 
         var solutionDirectory = Path.GetDirectoryName(solutionFilePath)!;
 
+        var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2022))
         {
-            var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
             var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v17");
             Directory.CreateDirectory(suoDirectoryPath);
             var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
@@ -35,7 +35,6 @@ public static class StartProjectSuoCreator
 
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2019))
         {
-            var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
             var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v16");
             Directory.CreateDirectory(suoDirectoryPath);
             var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
@@ -46,39 +45,11 @@ public static class StartProjectSuoCreator
 
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2017))
         {
-            var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
             var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v15");
             Directory.CreateDirectory(suoDirectoryPath);
             var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
             File.Delete(suoFilePath);
             using var templateStream = Resource.AsStream("Solution2017.suotemplate");
-            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-        }
-
-        if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2015))
-        {
-            var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
-            var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v14");
-            Directory.CreateDirectory(suoDirectoryPath);
-            var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
-            File.Delete(suoFilePath);
-            using var templateStream = Resource.AsStream("Solution2015.suotemplate");
-            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-        }
-
-        if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2013))
-        {
-            var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v12.suo");
-            File.Delete(suoFilePath);
-            using var templateStream = Resource.AsStream("Solution2013.suotemplate");
-            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
-        }
-
-        if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2012))
-        {
-            var suoFilePath = Path.ChangeExtension(solutionFilePath, ".v11.suo");
-            File.Delete(suoFilePath);
-            using var templateStream = Resource.AsStream("Solution2012.suotemplate");
             WriteToStream(suoFilePath, startupProjectGuids, templateStream);
         }
     }
