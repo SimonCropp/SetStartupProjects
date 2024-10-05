@@ -15,5 +15,6 @@
     <NuGetAuditLevel>low</NuGetAuditLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <PolyGuard>true</PolyGuard>
   </PropertyGroup>
 </Project>

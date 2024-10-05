@@ -13,8 +13,8 @@ public static class StartProjectSuoCreator
     /// </remarks>
     public static void CreateForSolutionFile(string solutionFilePath, List<string> startupProjectGuids, VisualStudioVersions visualStudioVersions = VisualStudioVersions.All)
     {
-        Guard.AgainstNullAndEmpty(solutionFilePath, nameof(solutionFilePath));
-        Guard.AgainstNonExistingFile(solutionFilePath, nameof(solutionFilePath));
+        Guard.NotNullOrWhiteSpace(solutionFilePath, nameof(solutionFilePath));
+        Guard.FileExists(solutionFilePath, nameof(solutionFilePath));
         if (startupProjectGuids.Count == 0)
         {
             throw new ArgumentOutOfRangeException(nameof(startupProjectGuids), $"For solutionFilePath: '{solutionFilePath}'");
