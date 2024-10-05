@@ -3,7 +3,14 @@
     [Fact]
     public Task GetAllProjectFiles()
     {
-        var allProjectFiles = SolutionProjectExtractor.GetAllProjectFiles("SampleSolution.txt");
-        return Verify(allProjectFiles);
+        var files = SolutionProjectExtractor.GetAllProjectFiles("SampleSolution.txt");
+        return Verify(
+            files.Select(_ =>
+                new
+                {
+                    _.Guid,
+                    _.RelativePath,
+                    FullPath = new FileInfo(_.FullPath),
+                }));
     }
 }
