@@ -18,7 +18,7 @@ public static class SolutionProjectExtractor
             var strings = line.Split(["\", \""], StringSplitOptions.RemoveEmptyEntries);
             var guidType = strings[0].Split('{', '}')[1];
             var guid = strings[2].Trim('{', '}', '"');
-            var fullPath = Path.Combine(solutionDirectory, strings[1]);
+            var fullPath = Path.GetFullPath(Path.Combine(solutionDirectory, strings[1]));
             if (guidType == "2150E333-8FDC-42A3-9474-1A3956D46DE8")
             {
                 //this is a Solution Folder and can be ignored
