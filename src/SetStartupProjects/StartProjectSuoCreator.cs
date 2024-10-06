@@ -45,15 +45,15 @@ public static class StartProjectSuoCreator
         Directory.CreateDirectory(suoDirectoryPath);
         var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
         File.Delete(suoFilePath);
-        using var templateStream = Resource.AsStream($"Solution{resourceKey}.suotemplate");
-        WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+        using var stream = Resource.AsStream($"Solution{resourceKey}.suotemplate");
+        WriteToStream(suoFilePath, startupProjectGuids, stream);
     }
 
-    static void WriteToStream(string suoFilePath, List<string> startupProjectGuids, Stream templateStream)
+    static void WriteToStream(string suoFilePath, List<string> startupProjectGuids, Stream stream)
     {
         try
         {
-            using var compoundFile = new CompoundFile(templateStream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
+            using var compoundFile = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
             compoundFile.RootStorage.Delete("SolutionConfiguration");
             var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
 
