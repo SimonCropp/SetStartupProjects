@@ -25,33 +25,28 @@ public static class StartProjectSuoCreator
         var solutionName = Path.GetFileNameWithoutExtension(solutionFilePath);
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2022))
         {
-            var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v17");
-            Directory.CreateDirectory(suoDirectoryPath);
-            var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
-            File.Delete(suoFilePath);
-            using var templateStream = Resource.AsStream("Solution2022.suotemplate");
-            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+            Write(startupProjectGuids, solutionDirectory, solutionName, "v17", "2022");
         }
 
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2019))
         {
-            var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v16");
-            Directory.CreateDirectory(suoDirectoryPath);
-            var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
-            File.Delete(suoFilePath);
-            using var templateStream = Resource.AsStream("Solution2019.suotemplate");
-            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+            Write(startupProjectGuids, solutionDirectory, solutionName, "v16", "2019");
         }
 
         if (visualStudioVersions.HasFlag(VisualStudioVersions.Vs2017))
         {
-            var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, "v15");
-            Directory.CreateDirectory(suoDirectoryPath);
-            var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
-            File.Delete(suoFilePath);
-            using var templateStream = Resource.AsStream("Solution2017.suotemplate");
-            WriteToStream(suoFilePath, startupProjectGuids, templateStream);
+            Write(startupProjectGuids, solutionDirectory, solutionName, "v15", "2017");
         }
+    }
+
+    static void Write(List<string> startupProjectGuids, string solutionDirectory, string solutionName, string versionKey, string resourceKey)
+    {
+        var suoDirectoryPath = Path.Combine(solutionDirectory, ".vs", solutionName, versionKey);
+        Directory.CreateDirectory(suoDirectoryPath);
+        var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
+        File.Delete(suoFilePath);
+        using var templateStream = Resource.AsStream($"Solution{resourceKey}.suotemplate");
+        WriteToStream(suoFilePath, startupProjectGuids, templateStream);
     }
 
     static void WriteToStream(string suoFilePath, List<string> startupProjectGuids, Stream templateStream)
