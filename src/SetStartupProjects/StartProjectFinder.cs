@@ -69,7 +69,8 @@ public static class StartProjectFinder
             .Where(_ => !string.IsNullOrWhiteSpace(_));
         foreach (var startupProject in defaultProjects)
         {
-            var project = allPossibleProjects.FirstOrDefault(_ => string.Equals(_.RelativePath, startupProject, StringComparison.OrdinalIgnoreCase));
+            var platformSpecificStartupProject = Path.DirectorySeparatorChar == '\\' ? startupProject : startupProject.Replace('\\', Path.DirectorySeparatorChar);
+            var project = allPossibleProjects.FirstOrDefault(_ => string.Equals(_.RelativePath, platformSpecificStartupProject, StringComparison.OrdinalIgnoreCase));
             if (project == null)
             {
                 var error = $"Could not find the relative path to the default startup project '{startupProject}'. Ensure `{defaultProjectsTextFile}` contains relative (to the solution directory) paths to project files.";
