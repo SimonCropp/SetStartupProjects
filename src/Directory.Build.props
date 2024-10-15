@@ -11,8 +11,6 @@
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <ResolveAssemblyReferencesSilent>true</ResolveAssemblyReferencesSilent>
-    <NuGetAuditMode>all</NuGetAuditMode>
-    <NuGetAuditLevel>low</NuGetAuditLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <PolyGuard>true</PolyGuard>
