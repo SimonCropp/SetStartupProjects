@@ -4,6 +4,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>preview</LangVersion>
     <SignAssembly>true</SignAssembly>
+    <NoWarn>NU1608</NoWarn>
     <AssemblyOriginatorKeyFile>../key.snk</AssemblyOriginatorKeyFile>
     <Version>2.0.1</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
