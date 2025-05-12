@@ -12,5 +12,6 @@
     <EmbeddedResource Include="*.suotemplate" />
     <PackageReference Include="OpenMcdf" />
     <PackageReference Include="Polyfill" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
   </ItemGroup>
 </Project>
