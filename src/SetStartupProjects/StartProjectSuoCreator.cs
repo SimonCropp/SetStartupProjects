@@ -46,11 +46,6 @@ public static class StartProjectSuoCreator
         var suoFilePath = Path.Combine(suoDirectoryPath, ".suo");
         File.Delete(suoFilePath);
         using var stream = Resource.AsStream($"Solution{resourceKey}.suotemplate");
-        WriteToStream(suoFilePath, startupProjectGuids, stream);
-    }
-
-    static void WriteToStream(string suoFilePath, List<string> startupProjectGuids, Stream stream)
-    {
         try
         {
             using var compoundFile = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
