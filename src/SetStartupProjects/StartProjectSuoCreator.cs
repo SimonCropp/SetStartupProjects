@@ -48,12 +48,16 @@ public static class StartProjectSuoCreator
         using var stream = Resource.AsStream($"Solution{resourceKey}.suotemplate");
         try
         {
-            using var compoundFile = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.SectorRecycle | CFSConfiguration.EraseFreeSectors);
-            compoundFile.RootStorage.Delete("SolutionConfiguration");
-            var solutionConfiguration = compoundFile.RootStorage.AddStream("SolutionConfiguration");
+            using var root = RootStorage.Open(stream);
+            root.Delete("SolutionConfiguration");
+            var solutionConfiguration = root.CreateStream("SolutionConfiguration");
 
             SetSolutionConfigValue(solutionConfiguration, startupProjectGuids);
-            compoundFile.SaveAs(suoFilePath);
+
+            using var fileStream = new FileStream(suoFilePath, FileMode.CreateNew);
+            stream.Position = 0;
+            stream.CopyTo(fileStream);
+            fileStream.Flush();
         }
         catch (Exception exception)
         {
@@ -63,7 +67,7 @@ public static class StartProjectSuoCreator
         }
     }
 
-    static void SetSolutionConfigValue(CFStream cfStream, IEnumerable<string> startupProjectGuids)
+    static void SetSolutionConfigValue(CfbStream cfStream, IEnumerable<string> startupProjectGuids)
     {
         var single = Encoding.GetEncodings()
             .Single(_ => string.Equals(_.Name, "utf-16", StringComparison.OrdinalIgnoreCase));
@@ -97,6 +101,7 @@ public static class StartProjectSuoCreator
         }
 
         var newBytes = encoding.GetBytes(builder.ToString());
-        cfStream.SetData(newBytes);
+        cfStream.Write(newBytes);
+        cfStream.Flush();
     }
 }
