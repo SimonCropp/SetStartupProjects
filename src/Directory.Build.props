@@ -13,6 +13,6 @@
     <ResolveAssemblyReferencesSilent>true</ResolveAssemblyReferencesSilent>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <PolyGuard>true</PolyGuard>
+    <PolyEnsure>true</PolyEnsure>
   </PropertyGroup>
 </Project>

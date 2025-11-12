@@ -49,7 +49,7 @@ public static class StartProjectFinder
     /// </summary>
     public static IEnumerable<string> GetStartProjects(string solutionFile)
     {
-        Guard.FileExists(solutionFile, nameof(solutionFile));
+        Ensure.FileExists(solutionFile, nameof(solutionFile));
 
         var nameWithoutExtension = Path.GetFileNameWithoutExtension(solutionFile);
         var solutionDirectory = Path.GetDirectoryName(solutionFile)!;
@@ -84,7 +84,7 @@ public static class StartProjectFinder
     static bool ShouldIncludeProjectFile(Project project)
     {
         var projectFile = project.FullPath;
-        Guard.FileExists(projectFile, "Project");
+        Ensure.FileExists(projectFile, "Project");
         try
         {
             if (ShouldIncludeForFileExtension(Path.GetExtension(projectFile)))
