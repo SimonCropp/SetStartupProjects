@@ -49,7 +49,7 @@ public static class StartProjectFinder
     /// </summary>
     public static IEnumerable<string> GetStartProjects(string solutionFile)
     {
-        Ensure.FileExists(solutionFile, nameof(solutionFile));
+        Ensure.FileExists(solutionFile);
 
         var nameWithoutExtension = Path.GetFileNameWithoutExtension(solutionFile);
         var solutionDirectory = Path.GetDirectoryName(solutionFile)!;

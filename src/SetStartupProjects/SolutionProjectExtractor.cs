@@ -7,7 +7,7 @@ public static class SolutionProjectExtractor
 {
     public static IEnumerable<Project> GetAllProjectFiles(string solutionFile)
     {
-        Ensure.FileExists(solutionFile, nameof(solutionFile));
+        Ensure.FileExists(solutionFile);
         var solutionDirectory = Path.GetDirectoryName(solutionFile)!;
         foreach (var line in File.ReadAllLines(solutionFile))
         {
