@@ -57,7 +57,7 @@ public static class StartProjectSuoCreator
             using var fileStream = new FileStream(suoFilePath, FileMode.CreateNew);
             stream.Position = 0;
             stream.CopyTo(fileStream);
-            fileStream.Flush();
+            fileStream.Flush(true);
         }
         catch (Exception exception)
         {
