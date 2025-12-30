@@ -1,7 +1,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <Authors>Simon Cropp</Authors>
     <Description>Hacks a Visual Studio .suo file to set multiple startup projects.</Description>
     <PackageTags>SUO, Visual Studio, Startup</PackageTags>
