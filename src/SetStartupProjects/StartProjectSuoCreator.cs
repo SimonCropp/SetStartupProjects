@@ -53,11 +53,12 @@ public static class StartProjectSuoCreator
             var solutionConfiguration = root.CreateStream("SolutionConfiguration");
 
             SetSolutionConfigValue(solutionConfiguration, startupProjectGuids);
+            root.Flush();
 
             using var fileStream = new FileStream(suoFilePath, FileMode.CreateNew);
             stream.Position = 0;
             stream.CopyTo(fileStream);
-            fileStream.Flush();
+            fileStream.Flush(true);
         }
         catch (Exception exception)
         {
