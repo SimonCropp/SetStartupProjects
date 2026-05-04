@@ -6,10 +6,10 @@
   <ItemGroup>
     <PackageVersion Include="MarkdownSnippets.MsBuild" Version="28.2.0" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
     <PackageVersion Include="OpenMcdf" Version="3.1.3" />
     <PackageVersion Include="Polyfill" Version="10.3.0" />
-    <PackageVersion Include="ProjectDefaults" Version="1.0.173" />
+    <PackageVersion Include="ProjectDefaults" Version="1.0.174" />
     <PackageVersion Include="Verify.DiffPlex" Version="3.1.2" />
     <PackageVersion Include="Verify.XunitV3" Version="31.16.2" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
