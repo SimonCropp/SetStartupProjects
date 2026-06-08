@@ -16,7 +16,6 @@
     <PackageReference Include="SimpleInfoName" />
     <PackageReference Include="Verify" />
     <PackageReference Include="MarkdownSnippets.MsBuild" PrivateAssets="all" />
-    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
     <PackageReference Include="xunit.v3" />
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />
     <ProjectReference Include="..\SetStartupProjects\SetStartupProjects.csproj" />
