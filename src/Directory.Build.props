@@ -4,7 +4,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>preview</LangVersion>
     <SignAssembly>false</SignAssembly>
-    <NoWarn>NU1608</NoWarn>
+    <NoWarn>NU1608;SC023</NoWarn>
     <Version>3.0.2</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -14,5 +14,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <PolyEnsure>true</PolyEnsure>
+    <Verify_SponsorshipLicenseIgnored>true</Verify_SponsorshipLicenseIgnored>
   </PropertyGroup>
 </Project>
