@@ -1,0 +1,67 @@
+﻿[
+  {
+    Guid: Guid_1,
+    RelativePath: ClassLibraryCS/ClassLibraryCS.csproj,
+    FullPath: {CurrentDirectory}ClassLibraryCS/ClassLibraryCS.csproj
+  },
+  {
+    Guid: Guid_2,
+    RelativePath: ConsoleApplicationCS/ConsoleApplicationCS.csproj,
+    FullPath: {CurrentDirectory}ConsoleApplicationCS/ConsoleApplicationCS.csproj
+  },
+  {
+    Guid: Guid_3,
+    RelativePath: ClassLibraryVB/ClassLibraryVB.vbproj,
+    FullPath: {CurrentDirectory}ClassLibraryVB/ClassLibraryVB.vbproj
+  },
+  {
+    Guid: Guid_4,
+    RelativePath: ConsoleApplicationVB/ConsoleApplicationVB.vbproj,
+    FullPath: {CurrentDirectory}ConsoleApplicationVB/ConsoleApplicationVB.vbproj
+  },
+  {
+    Guid: Guid_5,
+    RelativePath: ConsoleApplicationFS/ConsoleApplicationFS.fsproj,
+    FullPath: {CurrentDirectory}ConsoleApplicationFS/ConsoleApplicationFS.fsproj
+  },
+  {
+    Guid: Guid_6,
+    RelativePath: WpfApplicationVB/WpfApplicationVB.vbproj,
+    FullPath: {CurrentDirectory}WpfApplicationVB/WpfApplicationVB.vbproj
+  },
+  {
+    Guid: Guid_7,
+    RelativePath: WpfApplicationCS/WpfApplicationCS.csproj,
+    FullPath: {CurrentDirectory}WpfApplicationCS/WpfApplicationCS.csproj
+  },
+  {
+    Guid: Guid_8,
+    RelativePath: WindowsFormsApplicationCS/WindowsFormsApplicationCS.csproj,
+    FullPath: {CurrentDirectory}WindowsFormsApplicationCS/WindowsFormsApplicationCS.csproj
+  },
+  {
+    Guid: Guid_9,
+    RelativePath: WindowsFormsApplicationVB/WindowsFormsApplicationVB.vbproj,
+    FullPath: {CurrentDirectory}WindowsFormsApplicationVB/WindowsFormsApplicationVB.vbproj
+  },
+  {
+    Guid: Guid_10,
+    RelativePath: WebApplicationVB/WebApplicationVB.vbproj,
+    FullPath: {CurrentDirectory}WebApplicationVB/WebApplicationVB.vbproj
+  },
+  {
+    Guid: Guid_11,
+    RelativePath: WebApplicationCS/WebApplicationCS.csproj,
+    FullPath: {CurrentDirectory}WebApplicationCS/WebApplicationCS.csproj
+  },
+  {
+    Guid: Guid_12,
+    RelativePath: ClassLibraryFS/ClassLibraryFS.fsproj,
+    FullPath: {CurrentDirectory}ClassLibraryFS/ClassLibraryFS.fsproj
+  },
+  {
+    Guid: Guid_13,
+    RelativePath: AzureCloudService/AzureCloudService.ccproj,
+    FullPath: {CurrentDirectory}AzureCloudService/AzureCloudService.ccproj
+  }
+]
